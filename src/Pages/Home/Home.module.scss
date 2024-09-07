@@ -1,0 +1,336 @@
+:root {
+    --title-color: #221038;
+}
+.wrapper {
+}
+.section-title {
+    color: var(--title-color);
+    font-weight: 800;
+    text-align: center;
+    font-size: 3.4rem;
+    margin-bottom: 18px;
+}
+.primary-custom-btn {
+    background-color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.6rem;
+    height: 50px;
+    padding: 12px 10px;
+}
+.primary-custom-btn + .primary-custom-btn {
+    margin-left: 15px;
+}
+.banner-section {
+    position: relative;
+    padding: 60px 0;
+}
+.banner-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #08023dd0;
+    z-index: 10;
+}
+.banner-content {
+    position: relative;
+    z-index: 11;
+    width: var(--default-layout-width);
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.banner-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+}
+.banner-subtitle {
+    font-size: 6.2rem;
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin: 10px 0 15px;
+    min-width: 66vw;
+}
+.banner-info {
+    color: #ddd;
+    text-align: center;
+    font-size: 1.6rem;
+    max-width: 58vw;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+// ABOUT US SECTION
+.aboutUs-section {
+    position: relative;
+    padding: 60px 0;
+}
+.aboutUs-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffc0;
+}
+.aboutUs-content {
+    position: relative;
+    z-index: 11;
+    width: var(--default-layout-width);
+    max-width: 100%;
+    margin: auto;
+}
+
+.aboutUs-leftSide {
+    padding-left: 20px;
+}
+.aboutUs-info {
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: justify;
+}
+.aboutUs-actions {
+    text-align: center;
+    margin-top: 32px;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: center;
+}
+.aboutUs-img {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    height: 320px;
+}
+// INTRODUCE SECTION
+.introduce-section {
+    padding: 40px 0;
+    width: var(--default-layout-width);
+    max-width: 100%;
+    margin: auto;
+}
+.introduce-body {
+    padding: 0 50px;
+}
+.introduce-item {
+}
+.introduce-title {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    .introduce-icon {
+        margin-right: 8px;
+        font-size: 2.2rem;
+    }
+}
+.introduce-info {
+    text-align: justify;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+// LEVEL SELECTION SECTION
+.levelSelection-section {
+}
+.levelSelection-img {
+    position: relative;
+    height: 400px;
+    object-fit: cover;
+    clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 40%);
+    margin-top: 20px;
+    &:hover .img-overlay {
+        background-color: transparent;
+    }
+    img {
+        border-radius: 6px;
+        width: 100%;
+    }
+}
+.levelSelection-img.reflect {
+    clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
+}
+.img-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000008e;
+    transition: all 0.2s ease-in-out;
+    z-index: 10;
+}
+.levelSelection-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    color: #fff;
+    text-align: center;
+}
+.levelSelection-title {
+    font-weight: 800;
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.levelSelection-subtitle {
+}
+// COURSE,MENTOR,ROAD SECTION
+.course-section,
+.mentor-section {
+    padding: 50px 0;
+    width: var(--default-layout-width);
+    max-width: 100%;
+    margin: auto;
+    position: relative;
+}
+.road-section {
+    padding: 50px 0;
+    width: 100%;
+    margin: auto;
+    position: relative;
+}
+.road-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+.road-content {
+    position: relative;
+    margin: auto;
+    max-width: 100%;
+}
+.road-title {
+    color: var(--title-color);
+    font-weight: 700;
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+}
+.road-btn {
+    width: 200px;
+}
+// PARTNER SECTION
+.partner-section {
+    background-color: #f5f7fc;
+}
+.partner-content {
+    padding: 80px 0;
+    width: var(--default-layout-width);
+    max-width: 100%;
+    margin: auto;
+}
+.partner-title {
+    margin-bottom: 45px;
+}
+.partner-img {
+    height: 100px;
+    width: 100%;
+    object-fit: contain;
+}
+@media (max-width: 992px) {
+    .banner-info {
+        max-width: 90%;
+    }
+    .aboutUs-content {
+        width: 720px;
+    }
+    .aboutUs-body {
+        flex-direction: column-reverse;
+    }
+    .aboutUs-leftSide {
+        padding: 0;
+    }
+    .aboutUs-img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    .introduce-body {
+        max-width: 720px;
+        margin: auto;
+    }
+    .introduce-title {
+        font-size: 2.2rem;
+    }
+    .introduce-info {
+        font-size: 2rem;
+    }
+    .levelSelection-section {
+        padding: 0 20px;
+    }
+    .levelSelection-img,
+    .levelSelection-img.reflect {
+        clip-path: none;
+        height: auto;
+        max-height: 520px;
+    }
+    .course-section,
+    .mentor-section {
+        padding: 50px;
+    }
+    .partner-img {
+        height: 80px;
+    }
+}
+@media (max-width: 767px) {
+    .banner-subtitle {
+        font-size: 2.6rem;
+        padding: 0 5px;
+    }
+    .banner-info {
+        font-size: 1.4rem;
+    }
+    .aboutUs-body {
+        padding: 0 10px;
+        flex-direction: column;
+    }
+    .primary-custom-btn {
+        white-space: normal;
+        height: auto;
+    }
+    .primary-custom-btn + .primary-custom-btn {
+        margin-left: 10px;
+    }
+    .introduce-body {
+        padding: 0 10px;
+    }
+    .levelSelection-section {
+        padding: 0 10px;
+    }
+    .levelSelection-title {
+        font-size: 2.4rem;
+    }
+    .course-section,
+    .mentor-section {
+        padding: 50px 10px;
+    }
+    .road-content {
+        padding: 0 10px;
+    }
+    .partner-content {
+        padding: 60px 10px;
+    }
+    .partner-img {
+        height: 100px;
+    }
+}
