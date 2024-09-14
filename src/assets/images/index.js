@@ -1,5 +1,7 @@
 const images = {
     defaultImg: require('./defaultImg.png'),
+    logoToyota: require('./logo-toyota.png'),
+    subLogo: require('./sub-logo.png'),
     shoppingCart: require('./icon-shopping-cart.jpg'),
     courseLevel1: require('./icon-title-course.png'),
     courseLevel2: require('./icon-title-course-2.png'),
@@ -27,9 +29,12 @@ const images = {
     universityLogo6: require('./logo ĐẠI HỌC-06.jpg'),
     universityLogo7: require('./logo ĐẠI HỌC-07.jpg'),
     banner: require('./banner.jpg'),
-    banner2: require('./banner-2.jpg'),
-    banner3: require('./banner-3.jpg'),
-    banner4: require('./banner-4.jpg'),
+    banner1: require('./banner-1.png'),
+    banner2: require('./banner-2.png'),
+    banner3: require('./banner-3.png'),
+    banner4: require('./banner-4.png'),
+    banner5: require('./banner-5.png'),
+    banner6: require('./banner-6.png'),
     bg: require('./background.jpg'),
 };
 export default images;

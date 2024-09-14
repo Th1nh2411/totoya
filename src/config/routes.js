@@ -1,9 +1,8 @@
 const routes = {
     home: '/',
     aboutUs: '/aboutUs',
-    STEMCourse: '/STEMCourse',
-    course: '/course',
-    mentor: '/mentor',
-    blog: '/blog',
+    usedCar: '/usedCar',
+    banking: '/banking',
+    utility: '/utility',
 };
 export default routes;

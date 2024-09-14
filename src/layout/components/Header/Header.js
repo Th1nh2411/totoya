@@ -8,8 +8,10 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import LocalStorageManager from '../../../utils/LocalStorageManager';
 
 import { StoreContext, actions } from '../../../store';
-import { Button, Input } from 'antd';
+import { Button, Flex, Input } from 'antd';
 import { MdOutlineClose, MdOutlineMenu, MdSearch } from 'react-icons/md';
+import Text from 'antd/es/typography/Text';
+import { HOTLINE } from '../../../constant';
 const cx = classNames.bind(styles);
 
 function Header() {
@@ -38,22 +40,25 @@ function Header() {
     return (
         <>
             <header className={cx('wrapper', { active: showMenuMb })}>
-                <div className={cx('inner')}>
+                <div
+                    className={cx('inner')}
+                    style={{ backgroundColor: '#f9f9f9', borderBottom: '1px solid #f0f0f0', flex: 1 }}
+                >
                     <div className={cx('top-header-wrapper')}>
                         <div className={cx('logo-wrapper')}>
                             <Link to={config.routes.home}>
-                                <img
-                                    src="https://www.learnworlds.com/app/themes/learnworlds/dist/images/logo.svg"
-                                    className={cx('logo')}
-                                    alt="logo"
-                                />
+                                <img src={images.logoToyota} className={cx('logo')} alt="logo" />
                             </Link>
                             <MdOutlineClose onClick={handleCloseMenuMb} className={cx('close-btn-mb')} />
                         </div>
-                        <div className={cx('cart-wrapper')}>
-                            <h2 className={cx('cart-title')}>Giỏ hàng</h2>
-                            <Image src={images.shoppingCart} alt="cart" className={cx('cart-img')} />
-                            <span className={cx('cart-quantity')}>3</span>
+                        <div className={cx('sub-wrapper')}>
+                            <Flex vertical align="center">
+                                <Text style={{ color: 'var(--primary-color)', fontWeight: 600 }}>{HOTLINE}</Text>
+                                <Text style={{ fontSize: 12 }}>(Hotline)</Text>
+                            </Flex>
+                            <div className={cx('sub-img-wrapper')}>
+                                <Image src={images.subLogo} alt="sub" className={cx('sub-img')} />
+                            </div>
                         </div>
                         <Input
                             className={cx('search')}
@@ -63,49 +68,37 @@ function Header() {
                             placeholder="Tìm kiếm khoá học"
                         />
                     </div>
+                </div>
+                <div className={cx('inner')} style={{ paddingBlock: 8 }}>
                     <div className={cx('side-group')}>
                         <nav className={cx('header-nav')}>
                             <NavLink
                                 onClick={handleCloseMenuMb}
                                 className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.home}
-                            >
-                                Trang chủ
-                            </NavLink>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
                                 to={config.routes.aboutUs}
                             >
-                                Về chúng tôi
+                                Giới thiệu
                             </NavLink>
                             <NavLink
                                 onClick={handleCloseMenuMb}
                                 className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.STEMCourse}
+                                to={config.routes.usedCar}
                             >
-                                Khoá học STEM
+                                Xe đã qua sử dụng
                             </NavLink>
                             <NavLink
                                 onClick={handleCloseMenuMb}
                                 className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.course}
+                                to={config.routes.banking}
                             >
-                                Khoá học
+                                Ngân hàng
                             </NavLink>
                             <NavLink
                                 onClick={handleCloseMenuMb}
                                 className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.mentor}
+                                to={config.routes.utility}
                             >
-                                Mentor
-                            </NavLink>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.blog}
-                            >
-                                Blog
+                                Tiện ích
                             </NavLink>
                         </nav>
                     </div>

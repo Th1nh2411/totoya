@@ -9,16 +9,17 @@
     // display: flex;
     // justify-content: center;
     transition: all 0.1s ease-in-out;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .inner {
-    padding: 0 var(--default-layout-horizontal-spacer);
-    height: 100%;
-    width: var(--default-layout-width);
+    padding-inline: var(--default-layout-horizontal-spacer);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .top-header-wrapper {
     display: flex;
@@ -39,7 +40,7 @@
     justify-content: space-between;
 }
 .logo {
-    height: 40px;
+    height: 60px;
     object-fit: cover;
 }
 .header-nav {
@@ -63,20 +64,34 @@
 .header-nav_item + .header-nav_item {
     margin-left: 20px;
 }
-.cart-wrapper {
+.sub-wrapper {
     position: relative;
     display: flex;
     align-items: center;
+    gap: 40px;
     &:hover {
         cursor: pointer;
         opacity: 0.9;
     }
 }
-.cart-img {
+.sub-img {
     height: 50px;
     object-fit: contain;
 }
-.cart-quantity {
+.sub-img-wrapper {
+    position: relative;
+}
+.sub-img-wrapper::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 12px;
+    background-color: #999;
+}
+.sub-quantity {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -130,7 +145,7 @@
     font-size: 1.8rem;
     margin-top: 10px;
 }
-.cart-title {
+.sub-title {
     display: none;
 }
 @media (max-width: 875px) {
@@ -174,7 +189,7 @@
     }
 
     .header-nav_item,
-    .cart-title {
+    .sub-title {
         text-transform: uppercase;
         line-height: 50px;
         font-size: 2.2rem;
@@ -183,14 +198,14 @@
     .header-nav_item + .header-nav_item {
         margin: 0;
     }
-    .cart-wrapper {
+    .sub-wrapper {
         padding: 0 20px 20px;
     }
-    .cart-title {
+    .sub-title {
         display: block;
     }
 
-    .cart-img {
+    .sub-img {
         height: 50px;
     }
     .show-menu-mb {

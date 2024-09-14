@@ -5,7 +5,7 @@ import images from '../../assets/images';
 import { Col, Row } from 'react-bootstrap';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
-import { Button } from 'antd';
+import { Button, Carousel } from 'antd';
 import Slide from '../../components/Slide';
 import CourseItem from '../../components/CourseItem';
 import HOME_DATA from './data';
@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import MentorItem from '../../components/MentorItem/MentorItem';
 const cx = classNames.bind(styles);
-
+const bannerImg = [images.banner1, images.banner2, images.banner3, images.banner4, images.banner5, images.banner6];
 function Home() {
     const navigate = useNavigate();
     return (
@@ -23,18 +23,13 @@ function Home() {
                 style={{ background: `url(${HOME_DATA.banner.image}) center / cover no-repeat` }}
                 className={cx('banner-section')}
             >
-                <div className={cx('banner-content')}>
-                    <h3 className={cx('banner-title')}>{HOME_DATA.banner.title}</h3>
-                    <h1 className={cx('banner-subtitle')}>{HOME_DATA.banner.caption}</h1>
-                    <h4 className={cx('banner-info')}>{HOME_DATA.banner.description}</h4>
-                    <Button
-                        onClick={() => navigate(config.routes.course)}
-                        type="primary"
-                        className={cx('primary-custom-btn')}
-                    >
-                        Xem khoá học
-                    </Button>
-                </div>
+                <Carousel arrows infinite={false}>
+                    {bannerImg.map((item, index) => (
+                        <div>
+                            <img src={item} alt={`banner${index}`} className={cx('banner-img')} />
+                        </div>
+                    ))}
+                </Carousel>
             </section>
             {/* ABOUT US SECTION */}
             <section
