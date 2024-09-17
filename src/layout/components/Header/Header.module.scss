@@ -22,6 +22,8 @@
     justify-content: space-evenly;
 }
 .top-header-wrapper {
+    width: var(--default-layout-width);
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;

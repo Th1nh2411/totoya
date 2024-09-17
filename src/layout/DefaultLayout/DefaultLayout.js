@@ -19,7 +19,9 @@ function DefaultLayout({ children }) {
     const currentPath = useLocation().pathname;
 
     return (
-        <ConfigProvider theme={{ token: { colorPrimary: '#eb1a2d' } }}>
+        <ConfigProvider
+            theme={{ token: { colorPrimary: '#eb1a2d' }, components: { Typography: { titleMarginBottom: 0 } } }}
+        >
             <div className={cx('wrapper')}>
                 <Header />
                 <div className={cx('container')}>

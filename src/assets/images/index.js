@@ -1,6 +1,7 @@
 const images = {
     defaultImg: require('./defaultImg.png'),
     logoToyota: require('./logo-toyota.png'),
+    mainLogo: require('./main-logo.png'),
     subLogo: require('./sub-logo.png'),
     shoppingCart: require('./icon-shopping-cart.jpg'),
     courseLevel1: require('./icon-title-course.png'),
@@ -39,6 +40,7 @@ const images = {
     fortunerModel: require('./fortuner.png'),
     rushModel: require('./rush.png'),
     viosModel: require('./vios.jpg'),
+    deposit: require('./deposit.png'),
     bg: require('./background.jpg'),
 };
 export default images;

@@ -47,7 +47,7 @@ function Header() {
                     <div className={cx('top-header-wrapper')}>
                         <div className={cx('logo-wrapper')}>
                             <Link to={config.routes.home}>
-                                <img src={images.logoToyota} className={cx('logo')} alt="logo" />
+                                <img src={images.mainLogo} className={cx('logo')} alt="logo" />
                             </Link>
                             <MdOutlineClose onClick={handleCloseMenuMb} className={cx('close-btn-mb')} />
                         </div>

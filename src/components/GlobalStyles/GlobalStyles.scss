@@ -59,7 +59,7 @@
     --card-bg-color: #fff;
     --default-layout-header-height: 128px;
     --hover-color: #1f915633;
-    --default-layout-width: 1200px;
+    --default-layout-width: 1320px;
     --default-layout-horizontal-spacer: 60px;
     --black: #000;
     --white: #fff;
@@ -80,7 +80,7 @@ html {
 }
 
 html body {
-    font-family: 'Nunito', sans-serif;
+    // font-family: 'Nunito', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     overflow-y: overlay;
@@ -129,6 +129,10 @@ a[href] {
         border-radius: 50%;
         background-color: #cccccc69;
     }
+}
+.hovered:hover {
+    cursor: pointer;
+    opacity: 0.9;
 }
 // Grid Boostrap gutter
 .g-6 {

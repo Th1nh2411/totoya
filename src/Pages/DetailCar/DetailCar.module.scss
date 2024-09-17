@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 1170px;
+    margin: 40px auto 60px;
+}
+.product-name {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.product-image-wrapper {
+    position: relative;
+    .product-image {
+        border-radius: 5px;
+        object-fit: cover;
+        transition: opacity 0.2s ease-in-out; // Hiệu ứng mờ
+        opacity: 1;
+    }
+
+    &.fade {
+        .product-image {
+            opacity: 0.5; // Mờ dần khi chuyển đổi
+        }
+    }
+}
