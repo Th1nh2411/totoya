@@ -12,13 +12,12 @@ function Header() {
         <footer className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Row className={cx('g-6')}>
-                    <Col md={6} lg={4}>
+                    <Col md={6} lg={5}>
                         <div className={cx('info-wrapper')}>
-                            <Image src="https://www.learnworlds.com/app/themes/learnworlds/dist/images/logo.svg" />
+                            <Image src={images.subLogo} />
                             <div className={cx('introduce')}>
-                                Chúng tôi cung cấp các khoá học chất lượng cao để cải thiện các kỹ năng lập trình của
-                                bạn. Tất cả các mentor của chúng tôi đều có nhiều kinh nghiệm trong thực tế và giảng
-                                dạy.
+                                Uy tín tạo niềm tin, với phương châm là không chạy theo về giá, không bán hàng bằng mọi
+                                giá, không bất chấp tất cả để bán hàng
                             </div>
                             <div className={cx('follow-wrapper')}>
                                 <h4>Theo dõi chúng tôi tại:</h4>
@@ -30,28 +29,13 @@ function Header() {
                             </div>
                         </div>
                     </Col>
-                    <Col md={6} lg={2}>
+                    <Col md={6} lg={3}>
                         <div className={cx('info-wrapper')}>
                             <div className={cx('info-title')}>Menu</div>
-                            <div className={cx('info-subtitle')}>Trang chủ</div>
-                            <div className={cx('info-subtitle')}>Về chúng tôi</div>
-                            <div className={cx('info-subtitle')}>Nền tảng LMS</div>
-                            <div className={cx('info-subtitle')}>Khoá học STEM</div>
-                            <div className={cx('info-subtitle')}>Khoá học</div>
-                            <div className={cx('info-subtitle')}>Mentor</div>
-                            <div className={cx('info-subtitle')}>Blog</div>
-                        </div>
-                    </Col>
-                    <Col md={6} lg={2}>
-                        <div className={cx('info-wrapper')}>
-                            <div className={cx('info-title')}>Điều khoản</div>
-                            <div className={cx('info-subtitle')}>Chính sách bảo mật</div>
-                            <div className={cx('info-subtitle')}>Điều khoản dịch vụ</div>
-                        </div>
-                        <div className={cx('info-wrapper')}>
-                            <div className={cx('info-title')}>Cộng tác viên</div>
-                            <div className={cx('info-subtitle')}>Đăng ký Cộng tác viên</div>
-                            <div className={cx('info-subtitle')}>Đăng ký Mentor</div>
+                            <div className={cx('info-subtitle')}>Giới thiệu</div>
+                            <div className={cx('info-subtitle')}>Xe đã qua sử dụng</div>
+                            <div className={cx('info-subtitle')}>Ngân hàng</div>
+                            <div className={cx('info-subtitle')}>Tiện ích</div>
                         </div>
                     </Col>
                     <Col md={6} lg={4}>
@@ -59,11 +43,11 @@ function Header() {
                             <div className={cx('info-title')}>Liên hệ với chúng tôi</div>
                             <div className={cx('info-subtitle')}>
                                 <IoLocationSharp className={cx('info-icon')} />
-                                Vinhome quận 9, thành phố Thủ Đức
+                                507 Đ. Võ Nguyên Giáp, An Phú, Thủ Đức
                             </div>
                             <div className={cx('info-subtitle')}>
                                 <IoMail className={cx('info-icon')} />
-                                amazingtech.hr@gmail.com
+                                totoya@gmail.com
                             </div>
                             <div className={cx('info-subtitle')}>
                                 <FaPhoneAlt className={cx('info-icon')} />

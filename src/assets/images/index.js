@@ -35,6 +35,10 @@ const images = {
     banner4: require('./banner-4.png'),
     banner5: require('./banner-5.png'),
     banner6: require('./banner-6.png'),
+    altisModel: require('./altis.png'),
+    fortunerModel: require('./fortuner.png'),
+    rushModel: require('./rush.png'),
+    viosModel: require('./vios.jpg'),
     bg: require('./background.jpg'),
 };
 export default images;

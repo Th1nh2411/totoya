@@ -7,8 +7,9 @@
     color: var(--title-color);
     font-weight: 800;
     text-align: center;
-    font-size: 3.4rem;
-    margin-bottom: 18px;
+    font-size: 2.8rem;
+    margin-bottom: 32px;
+    position: relative;
 }
 .primary-custom-btn {
     background-color: var(--primary-color);
@@ -73,35 +74,55 @@
     height: 320px;
 }
 // INTRODUCE SECTION
-.introduce-section {
+.models-section {
     padding: 40px 0;
     width: var(--default-layout-width);
     max-width: 100%;
     margin: auto;
 }
-.introduce-body {
+.models-section .section-title::after {
+    content: '';
+    bottom: -12px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+.models-body {
     padding: 0 50px;
 }
-.introduce-item {
+.model-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
-.introduce-title {
+.model-name {
     display: flex;
     align-items: center;
     font-weight: 700;
     color: var(--primary-color);
     line-height: 1;
-    margin-bottom: 15px;
+    margin: 5px 0 0;
     font-size: 1.8rem;
-    .introduce-icon {
-        margin-right: 8px;
-        font-size: 2.2rem;
-    }
 }
-.introduce-info {
-    text-align: justify;
-    font-size: 1.4rem;
-    font-weight: 700;
-    line-height: 1.5;
+.model-image {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+}
+.model-price {
+    position: relative;
+}
+.model-price:after {
+    content: 'VND';
+    top: -2px;
+    position: absolute;
+    right: -24px;
+    font-size: 10px;
 }
 // LEVEL SELECTION SECTION
 .levelSelection-section {

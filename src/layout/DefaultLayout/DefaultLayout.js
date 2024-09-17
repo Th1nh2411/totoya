@@ -11,6 +11,7 @@ import { StoreContext, actions } from '../../store';
 import Toast from '../../components/Toast/Toast';
 import config from '../../config';
 import { useLocation } from 'react-router';
+import { ConfigProvider } from 'antd';
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
     const localStorageManager = LocalStorageManager.getInstance();
@@ -18,7 +19,7 @@ function DefaultLayout({ children }) {
     const currentPath = useLocation().pathname;
 
     return (
-        <>
+        <ConfigProvider theme={{ token: { colorPrimary: '#eb1a2d' } }}>
             <div className={cx('wrapper')}>
                 <Header />
                 <div className={cx('container')}>
@@ -35,7 +36,7 @@ function DefaultLayout({ children }) {
                     onClose={() => dispatch(actions.setToast({ show: false }))}
                 />
             )}
-        </>
+        </ConfigProvider>
     );
 }
 DefaultLayout.propTypes = {
