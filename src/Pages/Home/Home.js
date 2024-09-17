@@ -4,7 +4,7 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
-import { Badge, Button, Carousel, Flex, Col, Flex, Row, Space } from 'antd';
+import { Badge, Button, Carousel, Flex, Col, Row, Space } from 'antd';
 import Slide from '../../components/Slide';
 import CourseItem from '../../components/CourseItem';
 import HOME_DATA from './data';
@@ -13,6 +13,7 @@ import config from '../../config';
 import MentorItem from '../../components/MentorItem/MentorItem';
 import { priceFormat } from '../../utils/format';
 import Text from 'antd/es/typography/Text';
+import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 const cx = classNames.bind(styles);
 const bannerImg = [images.banner1, images.banner2, images.banner3, images.banner4, images.banner5, images.banner6];
 function Home() {
@@ -38,16 +39,21 @@ function Home() {
                 className={cx('aboutUs-section')}
             >
                 <div className={cx('aboutUs-content')}>
-                    <Flex>
+                    <Flex gap={60}>
                         <div>
                             <Image src={images.staff1} alt={`staff1`} className={cx('aboutUs-img')} />
                         </div>
                         <div style={{ flex: 1 }}>
-                            <p>
-                                “Uy tín tạo niềm tin, với phương châm là không chạy theo về giá, không bán hàng bằng mọi
-                                giá, không bất chấp tất cả để bán hàng”
-                            </p>
-                            <h3 style={{ fontWeight: 700 }}>Phước Dũng</h3>
+                            <div style={{ fontSize: 18, lineHeight: 2 }}>
+                                <FaQuoteLeft />
+                                <i>
+                                    &nbsp;Uy tín tạo niềm tin, với phương châm là{' '}
+                                    <strong>không chạy theo về giá</strong>, không bán hàng bằng mọi giá, không bất chấp
+                                    tất cả để bán hàng&nbsp;
+                                </i>
+                                <FaQuoteRight />
+                            </div>
+                            <h3 style={{ fontWeight: 700, marginTop: 32 }}>Phước Dũng</h3>
                             <p>Nhân Viên Kinh Doanh</p>
                         </div>
                     </Flex>
