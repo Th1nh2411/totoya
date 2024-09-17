@@ -30,11 +30,13 @@ function Slide({
     const handlePrev = useCallback(() => {
         if (!sliderRef.current) return;
         sliderRef.current.slidePrev();
+        setViewIndex((prev) => prev - 1);
     }, []);
 
     const handleNext = useCallback(() => {
         if (!sliderRef.current) return;
         sliderRef.current.slideNext();
+        setViewIndex((prev) => prev + 1);
     }, []);
 
     const breakpointsOptions = {
@@ -59,11 +61,6 @@ function Slide({
                 slidesPerView={1}
                 slidesPerGroup={1}
                 spaceBetween={space}
-                pagination={{
-                    clickable: true,
-                    dynamicBullets: true,
-                    dynamicMainBullets: 3,
-                }}
                 autoplay={
                     autoPlay && {
                         delay: 2000,

@@ -42,7 +42,7 @@ function Header() {
             <header className={cx('wrapper', { active: showMenuMb })}>
                 <div
                     className={cx('inner')}
-                    style={{ backgroundColor: '#f9f9f9', borderBottom: '1px solid #f0f0f0', flex: 1 }}
+                    style={{ backgroundColor: '#f9f9f9', borderBottom: '1px solid #e3e3e3', flex: 1 }}
                 >
                     <div className={cx('top-header-wrapper')}>
                         <div className={cx('logo-wrapper')}>

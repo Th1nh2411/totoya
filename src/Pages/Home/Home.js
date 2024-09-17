@@ -4,7 +4,7 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
-import { Badge, Button, Carousel, Col, Flex, Row, Space } from 'antd';
+import { Badge, Button, Carousel, Flex, Col, Flex, Row, Space } from 'antd';
 import Slide from '../../components/Slide';
 import CourseItem from '../../components/CourseItem';
 import HOME_DATA from './data';
@@ -24,13 +24,13 @@ function Home() {
                 style={{ background: `url(${HOME_DATA.banner.image}) center / cover no-repeat` }}
                 className={cx('banner-section')}
             >
-                <Carousel arrows infinite={false}>
+                <Slide navigation>
                     {bannerImg.map((item, index) => (
                         <div key={index}>
-                            <img src={item} alt={`banner${index}`} className={cx('banner-img')} />
+                            <Image src={item} alt={`banner${index}`} className={cx('banner-img')} />
                         </div>
                     ))}
-                </Carousel>
+                </Slide>
             </section>
             {/* ABOUT US SECTION */}
             <section
@@ -38,34 +38,19 @@ function Home() {
                 className={cx('aboutUs-section')}
             >
                 <div className={cx('aboutUs-content')}>
-                    <h1 className={cx('section-title')}>{HOME_DATA.about.title}</h1>
-                    <Row className={cx('g-5', 'aboutUs-body')}>
-                        <Col lg={6} xs={12}>
-                            <div className={cx('aboutUs-leftSide')}>
-                                <h3 className={cx('aboutUs-info')}>{HOME_DATA.about.description}</h3>
-                                <div className={cx('aboutUs-actions')}>
-                                    <Button
-                                        onClick={() => navigate(config.routes.course)}
-                                        type="primary"
-                                        className={cx('primary-custom-btn')}
-                                    >
-                                        Xem khoá học
-                                    </Button>
-                                    <Button
-                                        target="_blank"
-                                        href={HOME_DATA.about.linkFb}
-                                        type="primary"
-                                        className={cx('primary-custom-btn')}
-                                    >
-                                        Hỗ trợ tư vấn
-                                    </Button>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col lg={6} xs={12}>
-                            <Image className={cx('aboutUs-img')} src={HOME_DATA.about.aboutImage} />
-                        </Col>
-                    </Row>
+                    <Flex>
+                        <div>
+                            <Image src={images.staff1} alt={`staff1`} className={cx('aboutUs-img')} />
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <p>
+                                “Uy tín tạo niềm tin, với phương châm là không chạy theo về giá, không bán hàng bằng mọi
+                                giá, không bất chấp tất cả để bán hàng”
+                            </p>
+                            <h3 style={{ fontWeight: 700 }}>Phước Dũng</h3>
+                            <p>Nhân Viên Kinh Doanh</p>
+                        </div>
+                    </Flex>
                 </div>
             </section>
             {/* carModels SECTION */}

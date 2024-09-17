@@ -47,9 +47,11 @@
 }
 .header-nav {
     display: flex;
+    gap: 40px;
     margin-bottom: 0;
 }
 .header-nav_item {
+    position: relative;
     text-decoration: none;
     list-style: none;
     font-weight: 600;
@@ -63,8 +65,15 @@
 .header-nav_item.active {
     color: var(--primary-color);
 }
-.header-nav_item + .header-nav_item {
-    margin-left: 20px;
+.header-nav_item + .header-nav_item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 14px;
+    background-color: #999;
 }
 .sub-wrapper {
     position: relative;
