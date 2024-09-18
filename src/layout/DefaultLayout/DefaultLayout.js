@@ -20,7 +20,10 @@ function DefaultLayout({ children }) {
 
     return (
         <ConfigProvider
-            theme={{ token: { colorPrimary: '#eb1a2d' }, components: { Typography: { titleMarginBottom: 0 } } }}
+            theme={{
+                token: { colorPrimary: '#eb1a2d' },
+                components: { Typography: { titleMarginBottom: 0 }, Form: { itemMarginBottom: 15 } },
+            }}
         >
             <div className={cx('wrapper')}>
                 <Header />
