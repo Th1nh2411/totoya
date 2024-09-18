@@ -8,6 +8,7 @@ import Text from 'antd/es/typography/Text';
 import { useNavigate, useParams } from 'react-router';
 import { mockCars } from '../UsedCarPage/data';
 import Title from 'antd/es/typography/Title';
+import ProductItem from '../../components/ProductItem';
 const cx = classNames.bind(styles);
 
 function DetailCar() {
@@ -66,6 +67,75 @@ function DetailCar() {
                     THÔNG TIN XE
                 </Title>
                 <Divider style={{ margin: '15px 0' }} />
+                <div>
+                    <table class="table table-striped">
+                        <tbody style={{ textAlign: 'center' }}>
+                            <tr>
+                                <td>Loại xe</td>
+                                <td>Fortuner 2.4AT</td>
+                            </tr>
+
+                            <tr>
+                                <td>Năm sản xuất</td>
+                                <td>2021</td>
+                            </tr>
+
+                            <tr>
+                                <td>Màu xe</td>
+                                <td>Trắng ngọc trai</td>
+                            </tr>
+
+                            <tr>
+                                <td>Số km</td>
+                                <td>68,148</td>
+                            </tr>
+
+                            <tr>
+                                <td>Hộp số</td>
+                                <td>Tự động</td>
+                            </tr>
+
+                            <tr>
+                                <td>Nhiên liệu</td>
+                                <td>Dầu</td>
+                            </tr>
+
+                            <tr>
+                                <td>Số chỗ ngồi</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Động cơ</td>
+                                <td>2393</td>
+                            </tr>
+                            <tr>
+                                <td>Phụ kiện được trang bị</td>
+                                <td>
+                                    <span
+                                        style={{ cursor: 'pointer' }}
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        title=""
+                                        data-original-title=""
+                                    ></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <Title level={3} style={{ color: 'var(--primary-color)', fontWeight: 500 }}>
+                    CÁC MẪU XE KHÁC
+                </Title>
+                <Divider style={{ margin: '15px 0' }} />
+                <Row gutter={[20, 20]}>
+                    {mockCars.slice(0, 4).map((item, index) => (
+                        <Col xs={24} sm={12} lg={6} key={index}>
+                            <ProductItem data={item} />
+                        </Col>
+                    ))}
+                </Row>
             </div>
         </div>
     );

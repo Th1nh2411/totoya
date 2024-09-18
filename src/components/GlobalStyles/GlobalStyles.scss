@@ -1,55 +1,5 @@
 @import 'normalize.css';
 
-// @import '../../../node_modules/bootstrap/scss/bootstrap-grid.scss';
-/* vietnamese */
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ibmplexsans/v14/zYXgKVElMYYaJe8bpLHnCwDKhd7eFb5N.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-
-/* vietnamese */
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ibmplexsans/v14/zYX9KVElMYYaJe8bpLHnCwDKjSL9AI5sdO_q.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-/* vietnamese */
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ibmplexsans/v14/zYX9KVElMYYaJe8bpLHnCwDKjQ76AI5sdO_q.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-
-/* vietnamese */
-@font-face {
-    font-family: 'IBM Plex Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ibmplexsans/v14/zYX9KVElMYYaJe8bpLHnCwDKjWr7AI5sdO_q.woff2) format('woff2');
-    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-// Nunino fonts
-@font-face {
-    font-family: 'Nunito';
-    font-style: normal;
-    src: url(../../assets/fonts/Nunito-VariableFont_wght.ttf);
-}
-@font-face {
-    font-family: 'Nunito';
-    font-style: italic;
-    src: url(../../assets/fonts/Nunito-Italic-VariableFont_wght.ttf);
-}
 :root {
     --primary-color: #eb1a2d;
     --radial-gradient-bg: linear-gradient(45deg, #27be70 0%, #0c713d 100%);
@@ -60,7 +10,7 @@
     --default-layout-header-height: 128px;
     --hover-color: #1f915633;
     --default-layout-width: 1320px;
-    --default-layout-horizontal-spacer: 60px;
+    --default-layout-horizontal-spacer: 20px;
     --black: #000;
     --white: #fff;
     --text-color: #333;
@@ -80,7 +30,7 @@ html {
 }
 
 html body {
-    // font-family: 'Nunito', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 1.6rem;
     line-height: 1.5;
     overflow-y: overlay;
@@ -103,7 +53,6 @@ input,
 [tabindex] {
     outline: none;
     border: none;
-    font-family: 'Nunito', sans-serif;
 }
 a[href] {
     text-decoration: none;

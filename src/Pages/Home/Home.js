@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
 import { Badge, Button, Carousel, Flex, Col, Row, Space } from 'antd';
 import Slide from '../../components/Slide';
-import CourseItem from '../../components/CourseItem';
 import HOME_DATA from './data';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
