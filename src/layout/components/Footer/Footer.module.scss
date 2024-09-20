@@ -3,7 +3,7 @@
     width: 100%;
 }
 .inner {
-    padding: 40px var(--default-layout-horizontal-spacer);
+    padding: 32px var(--default-layout-horizontal-spacer) 20px;
     margin: auto;
     width: var(--default-layout-width);
     max-width: 100%;
@@ -26,6 +26,14 @@
     align-items: center;
     margin-top: 8px;
     .social-icon {
+        color: #444;
+        border: 1px solid #adadad;
+        width: 28px;
+        height: 24px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:hover {
             cursor: pointer;
             opacity: 0.9;

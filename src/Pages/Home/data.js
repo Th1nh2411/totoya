@@ -24,26 +24,10 @@ const HOME_DATA = {
     carModels: {
         title: 'XE ĐÃ QUA SỬ DỤNG',
         items: [
-            {
-                name: 'Fortuner',
-                image: images.fortunerModel,
-                price: 400000000,
-            },
-            {
-                name: 'Rush ',
-                image: images.rushModel,
-                price: 400000000,
-            },
-            {
-                name: 'Vios',
-                image: images.viosModel,
-                price: 400000000,
-            },
-            {
-                name: 'Altis',
-                image: images.altisModel,
-                price: 400000000,
-            },
+            { id: 1, name: 'Fortuner', image: images.fortunerModel, price: 400000000 },
+            { id: 2, name: 'Rush ', image: images.rushModel, price: 400000000 },
+            { id: 3, name: 'Vios', image: images.viosModel, price: 400000000 },
+            { id: 4, name: 'Altis', image: images.altisModel, price: 400000000 },
         ],
     },
     map: {

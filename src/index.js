@@ -6,14 +6,17 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import GlobalStyle from './components/GlobalStyles';
 import { StoreProvider } from './store';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <GlobalStyle>
-            <StoreProvider>
-                <App />
-            </StoreProvider>
+            <RecoilRoot>
+                <StoreProvider>
+                    <App />
+                </StoreProvider>
+            </RecoilRoot>
         </GlobalStyle>
     </BrowserRouter>,
 );

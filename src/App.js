@@ -6,8 +6,10 @@ import config from './config';
 import dayjs from 'dayjs';
 import LocalStorageManager from './utils/LocalStorageManager';
 import Home from './Pages/Home/Home';
+import useModals from './hooks/useModals';
 
 function App() {
+    const { allModals } = useModals();
     return (
         <div className="App">
             <Routes>
@@ -33,6 +35,7 @@ function App() {
                     );
                 })}
             </Routes>
+            {allModals.map((item) => item.content)}
         </div>
     );
 }

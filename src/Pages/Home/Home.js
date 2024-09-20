@@ -73,17 +73,18 @@ function Home() {
                                         <Button
                                             onClick={() => navigate(config.routes.course)}
                                             type="primary"
-                                            style={{ borderRadius: '20px 0 0 20px', width: 110, fontWeight: 600 }}
+                                            style={{ borderRadius: '20px 0 0 20px', width: 120, fontWeight: 600 }}
                                             size="large"
                                         >
                                             Dự toán
                                         </Button>
                                         <Button
+                                            onClick={() => navigate(`usedCar/${item.id}`)}
                                             type="primary"
-                                            style={{ borderRadius: '0 20px 20px 0', width: 110, fontWeight: 600 }}
+                                            style={{ borderRadius: '0 20px 20px 0', width: 120, fontWeight: 600 }}
                                             size="large"
                                         >
-                                            Lái thử
+                                            Thông tin xe
                                         </Button>
                                     </Flex>
                                 </div>

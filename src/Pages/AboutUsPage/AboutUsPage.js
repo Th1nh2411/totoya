@@ -18,7 +18,7 @@ function AboutUsPage() {
             </div>
             <Col xs={24} sm={20} lg={18} style={{ margin: '30px auto' }}>
                 <Flex vertical gap={10}>
-                    <h1 style={{ fontSize: 30, fontWeight: 600 }}>Phước Dũng Totyota Rạch Chiếc</h1>
+                    <h1 style={{ fontSize: 30, fontWeight: 600 }}>Phước Dũng Toyota Rạch Chiếc</h1>
                     <div style={{ fontSize: 18, lineHeight: 1.5 }}>
                         <p>
                             <strong>Uy tín tạo niềm tin,</strong> với phương châm là “

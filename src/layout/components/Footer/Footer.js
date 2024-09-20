@@ -3,8 +3,9 @@ import classNames from 'classnames/bind';
 import images from '../../../assets/images';
 import Image from '../../../components/Image/Image';
 import { Col, Row } from 'react-bootstrap';
-import { FaFacebookF, FaLinkedinIn, FaPhoneAlt, FaYoutube } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn, FaPhoneAlt, FaTiktok, FaYoutube } from 'react-icons/fa';
 import { IoLocationSharp, IoMail } from 'react-icons/io5';
+import Link from 'antd/es/typography/Link';
 const cx = classNames.bind(styles);
 
 function Header() {
@@ -22,9 +23,27 @@ function Header() {
                             <div className={cx('follow-wrapper')}>
                                 <h4>Theo dõi chúng tôi tại:</h4>
                                 <div className={cx('list-icons')}>
-                                    <FaFacebookF className={cx('social-icon')} />
-                                    <FaLinkedinIn className={cx('social-icon')} />
-                                    <FaYoutube className={cx('social-icon')} />
+                                    <Link
+                                        className={cx('social-icon')}
+                                        target="_blank"
+                                        href="https://www.facebook.com/phuocdungtoyota"
+                                    >
+                                        <FaFacebookF />
+                                    </Link>
+                                    <Link
+                                        target="_blank"
+                                        href="https://www.tiktok.com/@phuocdungtoyota"
+                                        className={cx('social-icon')}
+                                    >
+                                        <FaTiktok />
+                                    </Link>
+                                    {/* <Link
+                                        target="_blank"
+                                        href="https://www.facebook.com/phuocdungtoyota"
+                                        className={cx('social-icon')}
+                                    >
+                                        <FaYoutube />
+                                    </Link> */}
                                 </div>
                             </div>
                         </div>
@@ -47,11 +66,11 @@ function Header() {
                             </div>
                             <div className={cx('info-subtitle')}>
                                 <IoMail className={cx('info-icon')} />
-                                totoya@gmail.com
+                                dung.lp@toyotasaigon.com
                             </div>
                             <div className={cx('info-subtitle')}>
                                 <FaPhoneAlt className={cx('info-icon')} />
-                                09999999
+                                0981061517
                             </div>
                         </div>
                     </Col>

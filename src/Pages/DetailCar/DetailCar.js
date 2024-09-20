@@ -3,12 +3,14 @@ import classNames from 'classnames/bind';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
-import { Button, Col, Divider, Flex, Image, Row, Select } from 'antd';
+import { Button, Col, Divider, Flex, Image, Row, Select, Tooltip } from 'antd';
 import Text from 'antd/es/typography/Text';
 import { useNavigate, useParams } from 'react-router';
 import { mockCars } from '../UsedCarPage/data';
 import Title from 'antd/es/typography/Title';
 import ProductItem from '../../components/ProductItem';
+import { useSetRecoilState } from 'recoil';
+import { costEstimateRegAtom } from '../../constant/atom';
 const cx = classNames.bind(styles);
 
 function DetailCar() {
@@ -16,6 +18,7 @@ function DetailCar() {
     const data = mockCars.find((item) => item.id == id);
     const [mainImage, setMainImage] = useState(data.images[0]);
     const [isFading, setIsFading] = useState(false);
+    const setCostEstimateModal = useSetRecoilState(costEstimateRegAtom);
     const changeImage = (newImage) => {
         if (newImage === mainImage) return;
         setIsFading(true);
@@ -25,7 +28,9 @@ function DetailCar() {
             setIsFading(false);
         }, 200);
     };
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <Row gutter={[20, 20]}>
@@ -56,9 +61,40 @@ function DetailCar() {
                             <Text>Xe tại: {data.location}</Text>
                             <Text>Màu sắc: {data.color}</Text>
                         </Flex>
-                        <Button type="primary" style={{ width: '100%', marginTop: 40 }}>
-                            Liên hệ
-                        </Button>
+                        <Flex gap={2}>
+                            <Button
+                                size="large"
+                                onClick={() => setCostEstimateModal({ visible: true })}
+                                type="primary"
+                                style={{ borderRadius: '20px 0 0 20px', width: '100%', marginTop: 40 }}
+                            >
+                                Dự toán
+                            </Button>
+                            <Tooltip
+                                title={
+                                    <Flex gap={5}>
+                                        <Text>SĐT hoặc Zalo:</Text>
+                                        <Text
+                                            level={5}
+                                            style={{ color: 'var(--primary-color)', fontWeight: 600 }}
+                                            copyable
+                                        >
+                                            0981061517
+                                        </Text>
+                                    </Flex>
+                                }
+                                trigger={'click'}
+                                color="white"
+                            >
+                                <Button
+                                    size="large"
+                                    type="primary"
+                                    style={{ borderRadius: '0 20px  20px 0 ', width: '100%', marginTop: 40 }}
+                                >
+                                    Liên hệ
+                                </Button>
+                            </Tooltip>
+                        </Flex>
                     </div>
                 </Col>
             </Row>
