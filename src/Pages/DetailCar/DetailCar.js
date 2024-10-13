@@ -70,30 +70,14 @@ function DetailCar() {
                             >
                                 Dự toán
                             </Button>
-                            <Tooltip
-                                title={
-                                    <Flex gap={5}>
-                                        <Text>SĐT hoặc Zalo:</Text>
-                                        <Text
-                                            level={5}
-                                            style={{ color: 'var(--primary-color)', fontWeight: 600 }}
-                                            copyable
-                                        >
-                                            0981061517
-                                        </Text>
-                                    </Flex>
-                                }
-                                trigger={'click'}
-                                color="white"
+                            <Button
+                                size="large"
+                                type="primary"
+                                style={{ borderRadius: '0 20px 20px 0', width: '100%', marginTop: 40 }}
+                                onClick={() => window.open('https://zalo.me/0981061517', '_blank')}  // Chuyển đến Zalo với số điện thoại
                             >
-                                <Button
-                                    size="large"
-                                    type="primary"
-                                    style={{ borderRadius: '0 20px  20px 0 ', width: '100%', marginTop: 40 }}
-                                >
-                                    Liên hệ
-                                </Button>
-                            </Tooltip>
+                                Liên hệ
+                            </Button>
                         </Flex>
                     </div>
                 </Col>
@@ -105,7 +89,7 @@ function DetailCar() {
                 <Divider style={{ margin: '15px 0' }} />
                 <div>
                     <table class="table table-striped">
-                        <tbody style={{ textAlign: 'center' }}>
+                        <tbody style={{ textAlign: 'center' ,fontSize: '25px'}}>
                             <tr>
                                 <td>Loại xe</td>
                                 <td>Fortuner 2.4AT</td>

@@ -6,7 +6,8 @@ import Image from '../Image';
 import images from '../../assets/images';
 import { useNavigate } from 'react-router';
 import Text from 'antd/es/typography/Text';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
+import { Option } from 'antd/es/mentions';
 const cx = classNames.bind(styles);
 
 function CostEstimateForm({ data = {}, onSubmit = () => {} }) {
@@ -20,13 +21,16 @@ function CostEstimateForm({ data = {}, onSubmit = () => {} }) {
                     <Input variant="filled" />
                 </Form.Item>
                 <Form.Item name="plateColor" label="Màu biển">
-                    <Input variant="filled" />
+                <Select placeholder="Chọn màu biển" variant="filled">
+                    <Option value="Vàng">Vàng</Option>
+                    <Option value="Trắng">Trắng</Option>
+                </Select>
                 </Form.Item>
                 <Form.Item name="prepaid" label="Trả trước">
-                    <Input variant="filled" />
+                    <Input type="number" variant="filled" />
                 </Form.Item>
                 <Form.Item name="loan" label="Vay">
-                    <Input variant="filled" />
+                    <Input type="number" variant="filled" />
                 </Form.Item>
                 <Form.Item name="loanTime" label="Thời gian vay">
                     <Input variant="filled" />
