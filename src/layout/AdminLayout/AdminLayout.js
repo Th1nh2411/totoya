@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppstoreOutlined, UserOutlined, CarFilled } from '@ant-design/icons';
-import { Button, ConfigProvider, Flex, Image, Layout, Menu, theme } from 'antd';
+import { Button, ConfigProvider, Divider, Flex, Image, Layout, Menu, theme } from 'antd';
 import images from '../../assets/images';
 import Text from 'antd/es/typography/Text';
 import Title from 'antd/es/typography/Title';
@@ -11,13 +11,14 @@ import useUserActions from '../../hooks/useUserActions';
 const { Header, Content, Footer, Sider } = Layout;
 const siderStyle = {
     overflow: 'auto',
-    height: '100vh',
-    position: 'fixed',
+    // position: 'fixed',
+    minHeight: '100vh',
     insetInlineStart: 0,
     top: 0,
     bottom: 0,
     scrollbarWidth: 'thin',
     scrollbarColor: 'unset',
+    padding: 10,
 };
 
 const AdminLayout = ({ children }) => {
@@ -33,26 +34,30 @@ const AdminLayout = ({ children }) => {
         { title: 'Quản lý banner', href: config.routes.bannerAdmin, icon: AppstoreOutlined },
     ].map((item, index) => ({
         key: item.href,
-        icon: React.createElement(item.icon),
+        icon: React.createElement(item.icon, { style: { fontSize: 18 } }),
         label: item.title,
         onClick: () => navigate(item.href),
     }));
     return (
-        <ConfigProvider theme={{ components: { Typography: { titleMarginBottom: 0 } } }}>
+        <ConfigProvider
+            theme={{
+                components: { Typography: { titleMarginBottom: 0 }, Menu: { itemHeight: 50, itemMarginBlock: 10 } },
+            }}
+        >
             <Layout hasSider>
-                <Sider style={siderStyle}>
-                    <Image preview={false} src={images.mainLogo} style={{ padding: 20 }} />
-                    <Menu theme="dark" mode="inline" selectedKeys={pathname} items={items} />
+                <Sider style={siderStyle} breakpoint={'xl'} width={250}>
+                    <div style={{ padding: 10 }}>
+                        <Image preview={false} src={images.mainLogo} style={{ borderRadius: 5 }} />
+                    </div>
+                    <Divider style={{ borderColor: '#4b4b4b', marginBlock: 10 }} />
+                    <Menu theme="dark" mode="inline" selectedKeys={pathname} items={items} style={{ fontSize: 18 }} />
                 </Sider>
-                <Layout
-                    style={{
-                        marginInlineStart: 200,
-                    }}
-                >
+                <Layout style={{}}>
                     <Header
                         style={{
                             padding: '0 20px',
                             background: colorBgContainer,
+                            height: 64,
                         }}
                     >
                         <Flex align="center" justify="space-between" style={{ height: '100%' }}>
@@ -64,22 +69,15 @@ const AdminLayout = ({ children }) => {
                     </Header>
                     <Content
                         style={{
-                            minHeight: '100vh',
-                            margin: '24px 16px 0',
-                            overflow: 'initial',
+                            margin: 16,
+                            maxHeight: 'calc(100vh - 64px - 32px)',
+                            overflow: 'scroll',
                             backgroundColor: 'white',
                             borderRadius: borderRadiusLG,
                         }}
                     >
                         {children}
                     </Content>
-                    <Footer
-                        style={{
-                            textAlign: 'center',
-                        }}
-                    >
-                        ©{new Date().getFullYear()} Created by R1n
-                    </Footer>
                 </Layout>
             </Layout>
         </ConfigProvider>
