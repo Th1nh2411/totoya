@@ -6,16 +6,10 @@ import styles from './DefaultLayout.module.scss';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { HiShoppingCart } from 'react-icons/hi';
 import { BiArrowToTop } from 'react-icons/bi';
-import LocalStorageManager from '../../utils/LocalStorageManager';
-import { StoreContext, actions } from '../../store';
-import Toast from '../../components/Toast/Toast';
-import config from '../../config';
 import { useLocation } from 'react-router';
 import { ConfigProvider } from 'antd';
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
-    const localStorageManager = LocalStorageManager.getInstance();
-    const [state, dispatch] = useContext(StoreContext);
     const currentPath = useLocation().pathname;
 
     return (
@@ -32,15 +26,6 @@ function DefaultLayout({ children }) {
                 </div>
                 <Footer />
             </div>
-
-            {state.toast.show && (
-                <Toast
-                    content={state.toast.content}
-                    title={state.toast.title}
-                    type={state.toast.type}
-                    onClose={() => dispatch(actions.setToast({ show: false }))}
-                />
-            )}
         </ConfigProvider>
     );
 }

@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import Image from '../../components/Image';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 import { Badge, Button, Carousel, Flex, Col, Row, Space } from 'antd';
 import Slide from '../../components/Slide';
 import HOME_DATA from './data';

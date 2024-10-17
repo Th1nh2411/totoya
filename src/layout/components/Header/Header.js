@@ -7,7 +7,6 @@ import config from '../../../config';
 import { useContext, useEffect, useRef, useState } from 'react';
 import LocalStorageManager from '../../../utils/LocalStorageManager';
 
-import { StoreContext, actions } from '../../../store';
 import { Button, Flex, Input } from 'antd';
 import { MdOutlineClose, MdOutlineMenu, MdSearch } from 'react-icons/md';
 import Text from 'antd/es/typography/Text';

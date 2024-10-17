@@ -8,3 +8,10 @@ export const costEstimateRegAtom = atom({
         onSubmit: () => {},
     },
 });
+export const authAtom = atom({
+    key: 'authAtom',
+    default: {
+        isLoggedIn: true,
+        user: null,
+    },
+});

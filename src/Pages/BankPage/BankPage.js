@@ -4,7 +4,6 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { Button, Col, Flex, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 import commonServices from '../../services/commonServices';
 import { goExport } from '../../utils';
 const cx = classNames.bind(styles);

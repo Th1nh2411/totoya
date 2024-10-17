@@ -4,7 +4,6 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 import commonServices from '../../services/commonServices';
 import Title from 'antd/es/typography/Title';
 import UtilityItem from './UtilityItem';
@@ -13,10 +12,7 @@ const cx = classNames.bind(styles);
 function UtilityPage() {
     const [listUtility, setListUtility] = useState([]);
     useEffect(() => {
-        const getNewsData = async () => {
-            const res = await commonServices.getNews();
-            setListUtility(res?.data || []);
-        };
+        const getNewsData = async () => {};
         getNewsData();
     }, []);
     return (

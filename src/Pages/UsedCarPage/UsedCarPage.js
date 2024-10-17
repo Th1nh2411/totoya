@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import Image from '../../components/Image';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 import { Col, Flex, Row, Select } from 'antd';
 import { mockCars } from './data';
 import { useNavigate } from 'react-router';

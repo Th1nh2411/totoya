@@ -2,7 +2,6 @@ import styles from './DetailCar.module.scss';
 import classNames from 'classnames/bind';
 import images from '../../assets/images';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 import { Button, Col, Divider, Flex, Image, Row, Select, Tooltip } from 'antd';
 import Text from 'antd/es/typography/Text';
 import { useNavigate, useParams } from 'react-router';

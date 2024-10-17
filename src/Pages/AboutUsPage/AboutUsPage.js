@@ -4,7 +4,6 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { Col, Flex, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
-import { StoreContext, actions } from '../../store';
 const cx = classNames.bind(styles);
 
 function AboutUsPage() {
