@@ -9,6 +9,14 @@ const commonServices = {
             console.error(error);
         }
     },
+    exportLoanOptions: async () => {
+        try {
+            const headers = { params: {}, responseType: 'arraybuffer' };
+            return await httpRequest.get('download-excel', headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
 };
 
 export default commonServices;

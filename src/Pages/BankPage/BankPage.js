@@ -5,9 +5,15 @@ import images from '../../assets/images';
 import { Button, Col, Flex, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
+import commonServices from '../../services/commonServices';
+import { goExport } from '../../utils';
 const cx = classNames.bind(styles);
 
 function BankPage() {
+    const handleExportLoanOptions = async () => {
+        const res = await commonServices.exportLoanOptions();
+        goExport(res, 'traditional_loan');
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('banner-section')}>
@@ -32,7 +38,7 @@ function BankPage() {
                     </ul>
                 </div>
                 <Flex gap={15} justify="center">
-                    <Button size="large" type="primary">
+                    <Button size="large" type="primary" onClick={handleExportLoanOptions}>
                         Vay truyền thống
                     </Button>
                     <Button size="large">Vay 50/50</Button>

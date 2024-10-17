@@ -8,11 +8,19 @@ import { Col, Flex, Row, Select } from 'antd';
 import { mockCars } from './data';
 import { useNavigate } from 'react-router';
 import ProductItem from '../../components/ProductItem';
+import carServices from '../../services/carServices';
 const cx = classNames.bind(styles);
 
 function UsedCarPage() {
     const [filter, setFilter] = useState({});
-
+    const [listCar, setListCar] = useState([]);
+    useEffect(() => {
+        const handleFetchListCar = async () => {
+            const result = await carServices.getCars();
+            setListCar(result?.data || []);
+        };
+        handleFetchListCar();
+    }, []);
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>XE ĐÃ QUA SỬ DỤNG</h1>

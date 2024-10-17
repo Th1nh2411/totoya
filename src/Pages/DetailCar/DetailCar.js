@@ -11,6 +11,7 @@ import Title from 'antd/es/typography/Title';
 import ProductItem from '../../components/ProductItem';
 import { useSetRecoilState } from 'recoil';
 import { costEstimateRegAtom } from '../../constant/atom';
+import carServices from '../../services/carServices';
 const cx = classNames.bind(styles);
 
 function DetailCar() {
@@ -18,7 +19,17 @@ function DetailCar() {
     const data = mockCars.find((item) => item.id == id);
     const [mainImage, setMainImage] = useState(data.images[0]);
     const [isFading, setIsFading] = useState(false);
+    const [viewData, setViewData] = useState({});
     const setCostEstimateModal = useSetRecoilState(costEstimateRegAtom);
+    useEffect(() => {
+        if (id) {
+            const handleFetchListBanner = async () => {
+                const result = await carServices.getDetailCar(id);
+                setViewData(result?.data || {});
+            };
+            handleFetchListBanner();
+        }
+    }, []);
     const changeImage = (newImage) => {
         if (newImage === mainImage) return;
         setIsFading(true);
@@ -74,7 +85,7 @@ function DetailCar() {
                                 size="large"
                                 type="primary"
                                 style={{ borderRadius: '0 20px 20px 0', width: '100%', marginTop: 40 }}
-                                onClick={() => window.open('https://zalo.me/0981061517', '_blank')}  // Chuyển đến Zalo với số điện thoại
+                                onClick={() => window.open('https://zalo.me/0981061517', '_blank')} // Chuyển đến Zalo với số điện thoại
                             >
                                 Liên hệ
                             </Button>
@@ -89,7 +100,7 @@ function DetailCar() {
                 <Divider style={{ margin: '15px 0' }} />
                 <div>
                     <table class="table table-striped">
-                        <tbody style={{ textAlign: 'center' ,fontSize: '25px'}}>
+                        <tbody>
                             <tr>
                                 <td>Loại xe</td>
                                 <td>Fortuner 2.4AT</td>

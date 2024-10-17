@@ -6,13 +6,16 @@ import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import { StoreContext, actions } from '../../store';
 import commonServices from '../../services/commonServices';
+import Title from 'antd/es/typography/Title';
+import UtilityItem from './UtilityItem';
 const cx = classNames.bind(styles);
 
 function UtilityPage() {
+    const [listUtility, setListUtility] = useState([]);
     useEffect(() => {
         const getNewsData = async () => {
             const res = await commonServices.getNews();
-            console.log(res);
+            setListUtility(res?.data || []);
         };
         getNewsData();
     }, []);
@@ -20,6 +23,19 @@ function UtilityPage() {
         <div className={cx('wrapper')}>
             <div className={cx('banner-section')}>
                 <div className={cx('banner-content')}>TIỆN ÍCH</div>
+            </div>
+            <div>
+                <Title level={5} style={{ textAlign: 'center', marginBlock: 20 }}>
+                    "Tự hào là doanh nghiệp đứng vị trí dẫn đầu trên thị trường về dịch vụ sau bán hàng trong nhiều năm
+                    liên tiếp"
+                </Title>
+                <Row>
+                    {listUtility.map((item) => (
+                        <Col xs={12} md={6}>
+                            <UtilityItem url={item} />
+                        </Col>
+                    ))}
+                </Row>
             </div>
         </div>
     );

@@ -13,10 +13,19 @@ import MentorItem from '../../components/MentorItem/MentorItem';
 import { priceFormat } from '../../utils/format';
 import Text from 'antd/es/typography/Text';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
+import bannerServices from '../../services/bannerServices';
 const cx = classNames.bind(styles);
 const bannerImg = [images.banner1, images.banner2, images.banner3, images.banner4, images.banner5, images.banner6];
 function Home() {
     const navigate = useNavigate();
+    const [listBanner, setListBanner] = useState([]);
+    useEffect(() => {
+        const handleFetchListBanner = async () => {
+            const result = await bannerServices.getBanners();
+            setListBanner(result?.data || []);
+        };
+        handleFetchListBanner();
+    }, []);
     return (
         <div className={cx('wrapper')}>
             {/* BANNER SECTION */}

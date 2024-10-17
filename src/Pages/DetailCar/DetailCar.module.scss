@@ -4,6 +4,10 @@
     gap: 20px;
     width: 1170px;
     margin: 40px auto 60px;
+    tbody {
+        text-align: center;
+        font-size: 25px;
+    }
 }
 .product-name {
     color: var(--primary-color);
