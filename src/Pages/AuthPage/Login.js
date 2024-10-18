@@ -39,7 +39,7 @@ function LoginPage() {
     return (
         <div style={{ maxWidth: 532, margin: 'auto', height: '100vh' }}>
             <Flex style={{ height: '100%' }} align="center" justify="center" vertical>
-                <Title style={{ color: 'var(--primary-color)', fontSize: 38 }}>Rent system</Title>
+                <Title style={{ color: 'var(--primary-color)', fontSize: 38 }}>Phước Dũng Toyota</Title>
                 <Form
                     form={form}
                     labelCol={{

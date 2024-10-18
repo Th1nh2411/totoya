@@ -61,7 +61,7 @@ const AdminLayout = ({ children }) => {
                         }}
                     >
                         <Flex align="center" justify="space-between" style={{ height: '100%' }}>
-                            <Title level={3}>Trang quản lý Website </Title>
+                            <Title level={3}>Trang quản lý Website -</Title>
                             <Button onClick={logout} type="text" icon={<IoLogOut fontSize={20} />} iconPosition="end">
                                 Đăng xuất
                             </Button>
@@ -72,7 +72,7 @@ const AdminLayout = ({ children }) => {
                             margin: 16,
                             maxHeight: 'calc(100vh - 64px - 32px)',
                             overflow: 'scroll',
-                            backgroundColor: 'white',
+                            // backgroundColor: 'white',
                             borderRadius: borderRadiusLG,
                         }}
                     >
