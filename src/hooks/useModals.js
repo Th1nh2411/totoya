@@ -1,12 +1,16 @@
 import { Modal } from 'antd';
 import { useRecoilState } from 'recoil';
 import CostEstimateForm from '../components/Forms/CostEstimateForm';
-import { carDetailRegAtom, costEstimateRegAtom } from '../constant/atom';
-import CarDetailForm from '../components/Forms/CarDetailForm';
+import { costEstimateRegAtom } from '../constant/atom';
+import customerServices from '../services/customerServices';
 
 const useModals = () => {
     const [costEstimateModal, setCostEstimateModal] = useRecoilState(costEstimateRegAtom);
-    const [carDetailModal, setCarDetailModal] = useRecoilState(carDetailRegAtom);
+    const handleSubmit = async (formData) => {
+        customerServices.postCustomer(formData);
+        setCostEstimateModal({ ...costEstimateModal, visible: false });
+    };
+
     const allModals = [
         {
             key: 'cost_estimate',
@@ -20,7 +24,7 @@ const useModals = () => {
                     open={costEstimateModal.visible}
                     onCancel={() => setCostEstimateModal({ visible: false })}
                 >
-                    <CostEstimateForm data={costEstimateModal.data} onSubmit={costEstimateModal.onSubmit} />
+                    <CostEstimateForm data={costEstimateModal.data} onSubmit={handleSubmit} />
                 </Modal>
             ),
         },
