@@ -16,17 +16,25 @@ const cx = classNames.bind(styles);
 function DetailCar() {
     const { id } = useParams();
     const data = mockCars.find((item) => item.id == id);
-    const [mainImage, setMainImage] = useState(data.images[0]);
+    const [mainImage, setMainImage] = useState();
     const [isFading, setIsFading] = useState(false);
-    const [viewData, setViewData] = useState({});
+    const [viewData, setViewData] = useState();
+    const [carDetail, setCarDetail] = useState({});
     const setCostEstimateModal = useSetRecoilState(costEstimateRegAtom);
     useEffect(() => {
         if (id) {
-            const handleFetchListBanner = async () => {
+            const handleFetchDetailCar = async () => {
                 const result = await carServices.getDetailCar(id);
-                setViewData(result?.data || {});
+                setCarDetail(result?.data || {});
+                setMainImage(result?.data?.images[0])
             };
-            handleFetchListBanner();
+            handleFetchDetailCar();
+            const handleFetchListCar = async () => {
+                const result = await carServices.getCars();
+                console.log(123123123123,result.data)
+                setViewData(result?.data)
+            };
+            handleFetchListCar();
         }
     }, []);
     const changeImage = (newImage) => {
@@ -50,7 +58,7 @@ function DetailCar() {
                             <Image width={'100%'} height={320} src={mainImage} className={cx('product-image')} />
                         </div>
                         <Flex gap={10}>
-                            {data.images?.map((src, index) => (
+                            {carDetail?.images?.map((src, index) => (
                                 <Image
                                     preview={false}
                                     onClick={() => changeImage(src)}
@@ -66,10 +74,10 @@ function DetailCar() {
                 <Col xs={24} md={12}>
                     <div>
                         <Flex vertical>
-                            <h1 className={cx('product-name')}>{data.name}</h1>
-                            <h2>Giá: {data.price}</h2>
-                            <Text>Xe tại: {data.location}</Text>
-                            <Text>Màu sắc: {data.color}</Text>
+                            <h1 className={cx('product-name')}>{carDetail?.name}</h1>
+                            <h2>Giá: {carDetail?.price}</h2>
+                            <Text>Xe tại: {carDetail?.location}</Text>
+                            <Text>Màu sắc: {carDetail?.color}</Text>
                         </Flex>
                         <Flex gap={2}>
                             <Button
@@ -102,41 +110,41 @@ function DetailCar() {
                         <tbody>
                             <tr>
                                 <td>Loại xe</td>
-                                <td>Fortuner 2.4AT</td>
+                                <td>{carDetail?.name}</td>
                             </tr>
 
                             <tr>
                                 <td>Năm sản xuất</td>
-                                <td>2021</td>
+                                <td>{carDetail?.year}</td>
                             </tr>
 
                             <tr>
                                 <td>Màu xe</td>
-                                <td>Trắng ngọc trai</td>
+                                <td>{carDetail?.color}</td>
                             </tr>
 
                             <tr>
                                 <td>Số km</td>
-                                <td>68,148</td>
+                                <td>{carDetail?.mileage}</td>
                             </tr>
 
                             <tr>
                                 <td>Hộp số</td>
-                                <td>Tự động</td>
+                                <td>{carDetail?.gearbox}</td>
                             </tr>
 
                             <tr>
                                 <td>Nhiên liệu</td>
-                                <td>Dầu</td>
+                                <td>{carDetail?.fuel}</td>
                             </tr>
 
                             <tr>
                                 <td>Số chỗ ngồi</td>
-                                <td>7</td>
+                                <td>{carDetail?.seats}</td>
                             </tr>
                             <tr>
                                 <td>Động cơ</td>
-                                <td>2393</td>
+                                <td>{carDetail?.engine}</td>
                             </tr>
                             <tr>
                                 <td>Phụ kiện được trang bị</td>
@@ -159,13 +167,15 @@ function DetailCar() {
                     CÁC MẪU XE KHÁC
                 </Title>
                 <Divider style={{ margin: '15px 0' }} />
-                <Row gutter={[20, 20]}>
-                    {mockCars.slice(0, 4).map((item, index) => (
-                        <Col xs={24} sm={12} lg={6} key={index}>
-                            <ProductItem data={item} />
-                        </Col>
-                    ))}
-                </Row>
+                {viewData && (
+                    <Row gutter={[20, 20]}>
+                        {viewData.slice(0, 4).map((item, index) => (
+                            <Col xs={24} sm={12} lg={6} key={index}>
+                                <ProductItem data={item} />
+                            </Col>
+                        ))}
+                    </Row>
+                )}
             </div>
         </div>
     );

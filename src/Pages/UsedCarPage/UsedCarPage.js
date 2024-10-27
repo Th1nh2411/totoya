@@ -63,7 +63,7 @@ function UsedCarPage() {
                 ></Select>
             </Flex>
             <Row gutter={[20, 40]} style={{ marginTop: 20 }}>
-                {mockCars.map((item, index) => (
+                {listCar.map((item, index) => (
                     <Col xs={24} sm={12} lg={6} key={index}>
                         <ProductItem data={item} />
                     </Col>

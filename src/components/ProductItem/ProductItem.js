@@ -12,7 +12,7 @@ function ProductItem({ data = {} }) {
     const navigate = useNavigate();
     const [hoveredProduct, setHoveredProduct] = useState(false);
     return (
-        <div onClick={() => navigate(`/usedCar/${data.id}`)}>
+        <div onClick={() => navigate(`/usedCar/${data._id}`)}>
             <div
                 className={cx('product-img-wrapper')}
                 onMouseOver={() => setHoveredProduct(true)}
