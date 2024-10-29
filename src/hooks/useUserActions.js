@@ -6,6 +6,8 @@ import Cookies from 'js-cookie';
 import { getCookie, setCookie, removeCookie } from './useCookies';
 import { authAtom } from '../constant/atom';
 import commonServices from '../services/commonServices';
+import config from '../config';
+import { message } from 'antd';
 
 const useUserActions = () => {
     const navigate = useNavigate();
@@ -19,25 +21,25 @@ const useUserActions = () => {
 
     const logout = async () => {
         const res = await commonServices.logoutAdmin({ refresh_token_id: cookies?.refresh_token_id });
-        if (res?.success) {
-            removeCookie('user', '/');
-            setAuthAtom({
-                isLoggedIn: false,
-                user: null,
-            });
-        }
+        removeCookie('user', '/');
+        setAuthAtom({
+            isLoggedIn: false,
+            user: null,
+        });
     };
 
     const login = async (body = {}) => {
         try {
             const res = await commonServices.loginAdmin(body);
-            if (res?.success && res?.user) {
-                setCookie('user', res.user, { path: '/' });
+            if (res?.status === 'success' && res?.data.user) {
+                setCookie('user', res?.data.user, { path: '/' });
                 setAuthAtom((prev) => ({
                     ...prev,
                     isLoggedIn: true,
-                    user: res.user,
+                    user: res?.data.user,
                 }));
+                navigate(config.routes.admin);
+                message.success('Login thành công');
                 return res;
             }
         } catch (error) {
@@ -46,7 +48,7 @@ const useUserActions = () => {
     };
     const updateProfile = async (data) => {
         const res = await commonServices.updateAdmin({ ...data, id: authData.user?.id });
-        if (res?.success) {
+        if (res?.status === 'success') {
             setAuthAtom((prev) => ({
                 ...prev,
                 user: { ...prev?.user, ...data },

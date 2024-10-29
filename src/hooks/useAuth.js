@@ -8,7 +8,7 @@ const useAuth = () => {
     const [cookie] = useState(getCookie('user'));
     useEffect(() => {
         const checkIsLoggedIn = async () => {
-            if (cookie?.access_token) {
+            if (cookie) {
                 setAuth((prev) => ({
                     ...prev,
                     isLoggedIn: true,
@@ -21,7 +21,7 @@ const useAuth = () => {
                 });
             }
         };
-        checkIsLoggedIn();
+        // checkIsLoggedIn();
     }, [cookie]);
     return auth;
 };

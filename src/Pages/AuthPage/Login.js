@@ -18,10 +18,7 @@ function LoginPage() {
         setIsLoading(true);
         try {
             const res = await login(formData);
-            if (res?.success) {
-                navigate(config.routes.admin);
-                message.success('Login thành công');
-            } else {
+            if (res?.status !== 'success') {
                 form.setFields([
                     {
                         name: 'password',
@@ -52,12 +49,10 @@ function LoginPage() {
                     <Flex justify="center" vertical>
                         <Form.Item
                             rules={[
-                                {
-                                    required: true,
-                                    message: 'Vui lòng nhập tên đăng nhập!',
-                                },
+                                { required: true, message: 'Vui lòng nhập email!' },
+                                { type: 'email', message: 'Định dạng email chưa đúng!' },
                             ]}
-                            name="username"
+                            name="email"
                         >
                             <Input placeholder="Username" />
                         </Form.Item>

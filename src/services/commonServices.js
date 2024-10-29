@@ -11,12 +11,12 @@ const commonServices = {
     loginAdmin: async (body) => {
         try {
             const headers = { params: {} };
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({ success: true, user: { access_token: 'access_token', name: 'admin' } });
-                }, 1000);
-            });
-            return await httpRequest.post('auth/login', body, headers);
+            // return new Promise((resolve) => {
+            //     setTimeout(() => {
+            //         resolve({ success: true, user: { access_token: 'access_token', name: 'admin' } });
+            //     }, 1000);
+            // });
+            return await httpRequest.post('users/login', body, headers);
         } catch (error) {
             console.error(error);
         }
@@ -24,12 +24,12 @@ const commonServices = {
     logoutAdmin: async (body) => {
         try {
             const headers = { params: {} };
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve({ success: true });
-                }, 1000);
-            });
-            return await httpRequest.post('auth/logout', body, headers);
+            // return new Promise((resolve) => {
+            //     setTimeout(() => {
+            //         resolve({ success: true });
+            //     }, 1000);
+            // });
+            return await httpRequest.post('users/logout', body, headers);
         } catch (error) {
             console.error(error);
         }

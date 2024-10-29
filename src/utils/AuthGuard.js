@@ -15,11 +15,9 @@ const AuthGuard = ({ children }) => {
     const navigate = useNavigate();
     const { logout } = useUserActions();
     const isAdmin = useMatch('/admin');
-    console.log(isAdmin);
     useEffect(() => {
         if (!isLoggedIn) {
             navigate(config.routes.loginAdmin, { replace: true });
-            logout();
         } else if (isAdmin) {
             navigate(config.routes.carAdmin, { replace: true });
         }
