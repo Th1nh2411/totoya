@@ -35,14 +35,6 @@ const columns = [
 ];
 
 const AdminUser = () => {
-    const rowSelection = {
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-        },
-        getCheckboxProps: (record) => ({
-            name: record.name,
-        }),
-    };
     return (
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
@@ -63,13 +55,20 @@ const AdminUser = () => {
                     bordered
                     rowSelection={{
                         type: 'checkbox',
-                        ...rowSelection,
+                        onChange: (selectedRowKeys, selectedRows) => {
+                            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+                        },
+                        getCheckboxProps: (record) => ({
+                            name: record.name,
+                        }),
+                        fixed: 'left',
                     }}
                     columns={columns}
                     dataSource={ADMIN_MOCKS}
                     pagination={false}
                     scroll={{
-                        y: 55 * 12,
+                        x: 'max-content',
+                        y: 55 * 5,
                     }}
                 />
             </div>

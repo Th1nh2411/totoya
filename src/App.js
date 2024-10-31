@@ -2,10 +2,6 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { allRoutes } from './Routes';
 import DefaultLayout from './layout/DefaultLayout';
 import { Fragment, useEffect, useState } from 'react';
-import config from './config';
-import dayjs from 'dayjs';
-import LocalStorageManager from './utils/LocalStorageManager';
-import Home from './Pages/Home/Home';
 import useModals from './hooks/useModals';
 import AuthGuard from './utils/AuthGuard';
 import ExceptionPage from './Pages/ExceptionPage';

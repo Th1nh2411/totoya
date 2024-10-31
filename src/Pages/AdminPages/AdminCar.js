@@ -14,14 +14,59 @@ const columns = [
         sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
-        title: 'Tuổi',
-        dataIndex: 'age',
-        sorter: (a, b) => a.age - b.age,
+        title: 'Màu',
+        dataIndex: 'color',
+        sorter: (a, b) => a.color.localeCompare(b.color),
     },
     {
-        title: 'Địa chỉ',
-        dataIndex: 'address',
-        sorter: (a, b) => a.address.localeCompare(b.address),
+        title: 'Ngày tạo',
+        dataIndex: 'createdAt',
+        sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+    },
+    {
+        title: 'Giảm giá',
+        dataIndex: 'discount',
+        sorter: (a, b) => parseInt(a.discount) - parseInt(b.discount),
+    },
+    {
+        title: 'Động cơ',
+        dataIndex: 'engine',
+        sorter: (a, b) => a.engine - b.engine,
+    },
+    {
+        title: 'Nhiên liệu',
+        dataIndex: 'fuel',
+        sorter: (a, b) => a.fuel.localeCompare(b.fuel),
+    },
+    {
+        title: 'Hộp số',
+        dataIndex: 'gearbox',
+        sorter: (a, b) => a.gearbox.localeCompare(b.gearbox),
+    },
+    {
+        title: 'Vị trí',
+        dataIndex: 'location',
+        sorter: (a, b) => a.location.localeCompare(b.location),
+    },
+    {
+        title: 'Số KM đã đi',
+        dataIndex: 'mileage',
+        sorter: (a, b) => a.mileage - b.mileage,
+    },
+    {
+        title: 'Giá',
+        dataIndex: 'price',
+        sorter: (a, b) => parseInt(a.price) - parseInt(b.price),
+    },
+    {
+        title: 'Số ghế',
+        dataIndex: 'seats',
+        sorter: (a, b) => a.seats - b.seats,
+    },
+    {
+        title: 'Năm sản xuất',
+        dataIndex: 'year',
+        sorter: (a, b) => a.year - b.year,
     },
     {
         title: 'Action',
@@ -37,14 +82,6 @@ const columns = [
 
 const AdminCar = () => {
     const [listData, setListData] = useState([]);
-    const rowSelection = {
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-        },
-        getCheckboxProps: (record) => ({
-            name: record.name,
-        }),
-    };
     useEffect(() => {
         const getListData = async () => {
             const res = await carServices.getCars();
@@ -71,17 +108,25 @@ const AdminCar = () => {
             </div>
             <div className={cx('content-wrapper')} style={{ flex: 1 }}>
                 <Table
+                    sticky
+                    scroll={{
+                        x: 'max-content',
+                        y: 55 * 5,
+                    }}
                     bordered
                     rowSelection={{
                         type: 'checkbox',
-                        ...rowSelection,
+                        onChange: (selectedRowKeys, selectedRows) => {
+                            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+                        },
+                        getCheckboxProps: (record) => ({
+                            name: record.name,
+                        }),
+                        fixed: 'left',
                     }}
                     columns={columns}
-                    dataSource={ADMIN_MOCKS}
+                    dataSource={listData}
                     pagination={false}
-                    scroll={{
-                        y: 55 * 12,
-                    }}
                 />
             </div>
         </Flex>

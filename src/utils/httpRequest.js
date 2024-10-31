@@ -1,6 +1,7 @@
 import axios from 'axios';
 const httpRequest = axios.create({
     baseURL: 'https://api.phuocdungtoyota.com/',
+    withCredentials: true,
 });
 export const get = async (path, header = {}) => {
     const response = await httpRequest.get(path, header);
