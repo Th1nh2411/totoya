@@ -2,7 +2,7 @@ import { Button, Flex, Table } from 'antd';
 import React from 'react';
 import styles from './AdminPage.module.scss';
 import classNames from 'classnames/bind';
-import { ADMIN_MOCKS } from './_mocks';
+import { ADMIN_MOCKS } from './tableConfig';
 import Search from 'antd/es/input/Search';
 import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
 const cx = classNames.bind(styles);
@@ -68,7 +68,7 @@ const AdminUser = () => {
                     pagination={false}
                     scroll={{
                         x: 'max-content',
-                        y: 55 * 5,
+                        y: 55 * 13,
                     }}
                 />
             </div>

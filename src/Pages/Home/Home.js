@@ -8,7 +8,6 @@ import Slide from '../../components/Slide';
 import HOME_DATA from './data';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
-import MentorItem from '../../components/MentorItem/MentorItem';
 import { priceFormat } from '../../utils/format';
 import Text from 'antd/es/typography/Text';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';

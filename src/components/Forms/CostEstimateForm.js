@@ -1,19 +1,16 @@
-import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
-import styles from './Forms.module.scss';
 import Image from '../Image';
 import images from '../../assets/images';
 import { useNavigate } from 'react-router';
 import Text from 'antd/es/typography/Text';
 import { Button, Form, Input, Select } from 'antd';
 import { Option } from 'antd/es/mentions';
-const cx = classNames.bind(styles);
 
 function CostEstimateForm({ data = {}, onSubmit = () => {} }) {
     const navigate = useNavigate();
     return (
-        <div className={cx('wrapper')}>
+        <div className="wrapper">
             <h1>DỰ TOÁN CHI PHÍ</h1>
             <p>Quý khách vui lòng điền thông tin và nhấn tính chi phí</p>
             <Form size="large" labelCol={{ style: { width: 130, textAlign: 'start' } }} onFinish={onSubmit}>
@@ -21,10 +18,10 @@ function CostEstimateForm({ data = {}, onSubmit = () => {} }) {
                     <Input variant="filled" />
                 </Form.Item>
                 <Form.Item name="plateColor" label="Màu biển">
-                <Select placeholder="Chọn màu biển" variant="filled">
-                    <Option value="Vàng">Vàng</Option>
-                    <Option value="Trắng">Trắng</Option>
-                </Select>
+                    <Select placeholder="Chọn màu biển" variant="filled">
+                        <Option value="Vàng">Vàng</Option>
+                        <Option value="Trắng">Trắng</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item name="prepaid" label="Trả trước">
                     <Input type="number" variant="filled" />

@@ -8,6 +8,14 @@ export const costEstimateRegAtom = atom({
         onSubmit: () => {},
     },
 });
+export const carDetailRegAtom = atom({
+    key: 'carDetailRegAtom',
+    default: {
+        visible: false,
+        data: null,
+        onSubmit: () => {},
+    },
+});
 export const authAtom = atom({
     key: 'authAtom',
     default: {
