@@ -54,8 +54,8 @@ const AdminCar = () => {
                     onClick={() =>
                         setCarDetailModal({
                             visible: true,
-                            onSubmit: () => {
-                                setCarDetailModal({ visible: false });
+                            onSubmit: (closeModal) => {
+                                if (closeModal) setCarDetailModal({ visible: false });
                                 getListData();
                             },
                             data: record,
@@ -86,8 +86,8 @@ const AdminCar = () => {
                             onClick={() =>
                                 setCarDetailModal({
                                     visible: true,
-                                    onSubmit: () => {
-                                        setCarDetailModal({ visible: false });
+                                    onSubmit: (closeModal) => {
+                                        if (closeModal) setCarDetailModal({ visible: false });
                                         getListData();
                                     },
                                 })
@@ -95,7 +95,7 @@ const AdminCar = () => {
                         >
                             Thêm
                         </Button>
-                        <Popconfirm title="Chắc chăn xóa?" cancelText="Hủy" onConfirm={handleDeleteCars}>
+                        <Popconfirm title="Chắc chắn xóa?" cancelText="Hủy" onConfirm={handleDeleteCars}>
                             <Button
                                 icon={<DeleteFilled />}
                                 danger
@@ -116,6 +116,17 @@ const AdminCar = () => {
                     scroll={{
                         x: 'max-content',
                         y: 55 * 5,
+                    }}
+                    expandable={{
+                        expandedRowRender: (record) => (
+                            <p
+                                style={{
+                                    margin: 0,
+                                }}
+                            >
+                                {record.description}
+                            </p>
+                        ),
                     }}
                     pagination={false}
                     bordered

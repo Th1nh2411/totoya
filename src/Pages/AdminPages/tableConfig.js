@@ -1,11 +1,25 @@
-import { Button } from 'antd';
+import { Button, Flex, Image } from 'antd';
 import dayjs from 'dayjs';
+import { PlusOutlined } from '@ant-design/icons';
 
 export const carDefaultColumns = [
     {
         title: 'Tên',
         dataIndex: 'name',
         sorter: (a, b) => a.name.localeCompare(b.name),
+        fixed: 'left',
+    },
+    {
+        title: 'Ảnh',
+        dataIndex: 'images',
+        render: (_, record) => (
+            <Flex gap={8}>
+                {record.images?.map((img) => (
+                    <Image src={img} width={20} />
+                ))}
+            </Flex>
+        ),
+        minWidth: 80,
     },
     {
         title: 'Màu',

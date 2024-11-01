@@ -24,6 +24,14 @@ const carServices = {
             console.error(error);
         }
     },
+    uploadCarImage: async (id, body) => {
+        try {
+            const headers = { params: {}, 'Content-Type': 'multipart/form-data' };
+            return await httpRequest.patch(`/old_car/update_photo/${id}`, body, headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
     deleteCars: async (body) => {
         try {
             const headers = { params: {} };

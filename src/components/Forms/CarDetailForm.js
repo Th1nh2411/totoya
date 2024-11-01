@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Text from 'antd/es/typography/Text';
-import { Button, Col, Form, Input, Row, Select } from 'antd';
+import { Button, Col, Flex, Form, Image, Input, message, Row, Select, Upload } from 'antd';
 import { Option } from 'antd/es/mentions';
-import { EditFilled, PlusOutlined } from '@ant-design/icons';
+import { EditFilled, PlusOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
 import { useForm } from 'antd/es/form/Form';
 import carServices from '../../services/carServices';
@@ -12,21 +12,58 @@ import carServices from '../../services/carServices';
 function CarDetailForm({ data, onSubmit = () => {} }) {
     const [form] = useForm();
     const [rerender, setRerender] = useState();
+    const [shouldRunOnSubmit, setShouldRunOnSubmit] = useState(false);
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [fileList, setFileList] = useState(data?.images?.map((item, index) => ({ uid: index, url: item })) || []);
+    const navigate = useNavigate();
+    const uploadCarImages = async (carId, fileList) => {
+        const uploadPromises = fileList
+            .filter((item) => item?.originFileObj instanceof File)
+            .map(async (item) => {
+                const formData = new FormData();
+                formData.append('photo', item.originFileObj);
+                return carServices.uploadCarImage(carId, formData).catch((error) => {
+                    console.error('Upload failed for file', item.name, error);
+                });
+            });
+        await Promise.all(uploadPromises);
+    };
+    console.log(fileList);
+
     const handleSubmitForm = async (values) => {
-        if (data) {
-            const res = await carServices.updateCar(data._id, values);
-            if (res?.status === 'success') {
-                onSubmit();
+        const action = data?._id ? carServices.updateCar : carServices.createCar;
+        values.images = fileList.filter((item) => item.url).map((item) => item.url);
+        const response = await action(data?._id || values, data?._id ? values : undefined);
+
+        if (response?.status === 'success') {
+            if (!data?._id) {
+                await uploadCarImages(response.data._id, fileList);
+                message.success('Thêm thành công');
+            } else {
+                await uploadCarImages(data?._id, fileList);
+                message.success('Chỉnh sửa thành công');
             }
-        } else {
-            const res = await carServices.createCar(values);
-            if (res?.status === 'success') {
-                onSubmit();
-            }
+            onSubmit(shouldRunOnSubmit);
         }
     };
 
-    const navigate = useNavigate();
+    const getBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
+        }
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+    };
+
+    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
     return (
         <div>
             <Title style={{ marginBottom: 20, textAlign: 'center' }}>
@@ -111,18 +148,67 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                             <Input type="number" variant="filled" />
                         </Form.Item>
                     </Col>
+                    <Col xs={24}>
+                        <Form.Item label="Ảnh hiển thị">
+                            <Upload
+                                action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                                listType="picture-card"
+                                fileList={fileList}
+                                onPreview={handlePreview}
+                                onChange={handleChange}
+                                beforeUpload={(file, FileList) => false}
+                            >
+                                <button
+                                    style={{
+                                        border: 0,
+                                        background: 'none',
+                                    }}
+                                    type="button"
+                                >
+                                    <PlusOutlined />
+                                    <div
+                                        style={{
+                                            marginTop: 8,
+                                        }}
+                                    >
+                                        Upload
+                                    </div>
+                                </button>
+                            </Upload>
+                        </Form.Item>
+                    </Col>
                 </Row>
-                <Form.Item style={{ textAlign: 'center', marginBottom: 0 }}>
-                    <Button
-                        disabled={!form.isFieldsTouched()}
-                        type="primary"
-                        htmlType="submit"
-                        icon={data ? <EditFilled /> : <PlusOutlined />}
-                    >
-                        {data ? 'Lưu' : 'Thêm'}
-                    </Button>
+                <Form.Item style={{ marginBottom: 0 }}>
+                    <Flex gap={15} justify="center">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            icon={data ? <EditFilled /> : <PlusOutlined />}
+                            onClick={() => setShouldRunOnSubmit((prev) => true)}
+                        >
+                            {data ? 'Lưu' : 'Thêm'}
+                        </Button>
+                        {!data && (
+                            <Button color="default" variant="outlined" htmlType="submit" icon={<PlusSquareOutlined />}>
+                                Thêm & tiếp tục
+                            </Button>
+                        )}
+                    </Flex>
                 </Form.Item>
             </Form>
+            {previewImage && (
+                <Image
+                    wrapperStyle={{
+                        display: 'none',
+                    }}
+                    preview={{
+                        visible: previewOpen,
+                        onVisibleChange: (visible) => setPreviewOpen(visible),
+                        afterOpenChange: (visible) => !visible && setPreviewImage(''),
+                    }}
+                    src={previewImage}
+                />
+            )}
         </div>
     );
 }
