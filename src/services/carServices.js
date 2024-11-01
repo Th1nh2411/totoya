@@ -8,6 +8,30 @@ const carServices = {
             console.error(error);
         }
     },
+    createCar: async (body) => {
+        try {
+            const headers = { params: {} };
+            return await httpRequest.post(`/old_car`, body, headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    updateCar: async (id, body) => {
+        try {
+            const headers = { params: {} };
+            return await httpRequest.patch(`/old_car/${id}`, body, headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    deleteCars: async (body) => {
+        try {
+            const headers = { params: {} };
+            return await httpRequest.del(`/old_car`, body, headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
     getDetailCar: async (id) => {
         try {
             const headers = { params: {} };

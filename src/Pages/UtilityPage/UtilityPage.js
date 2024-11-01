@@ -26,8 +26,8 @@ function UtilityPage() {
                     liên tiếp"
                 </Title>
                 <Row>
-                    {listUtility.map((item) => (
-                        <Col xs={12} md={6}>
+                    {listUtility.map((item, index) => (
+                        <Col xs={12} md={6} key={index}>
                             <UtilityItem url={item} />
                         </Col>
                     ))}

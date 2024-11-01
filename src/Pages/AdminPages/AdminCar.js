@@ -1,5 +1,5 @@
-import { Button, Flex, Table } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Button, Flex, message, Popconfirm, Table } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './AdminPage.module.scss';
 import classNames from 'classnames/bind';
 import { ADMIN_MOCKS, carDefaultColumns } from './tableConfig';
@@ -14,15 +14,32 @@ const cx = classNames.bind(styles);
 const AdminCar = () => {
     const [listData, setListData] = useState([]);
     const setCarDetailModal = useSetRecoilState(carDetailRegAtom);
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedRowIds, setSelectedRowIds] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const getListData = async () => {
+        setIsLoading(true);
+        const res = await carServices.getCars();
+        if (res?.status === 'success') {
+            setListData(res.data);
+        }
+        setIsLoading(false);
+    };
     useEffect(() => {
-        const getListData = async () => {
-            const res = await carServices.getCars();
-            if (res?.status === 'success') {
-                setListData(res.data);
-            }
-        };
         getListData();
     }, []);
+    const filteredList = useMemo(
+        () => listData?.filter((item) => item.name?.toUpperCase().includes(searchText.toUpperCase())),
+        [listData, searchText],
+    );
+    const handleDeleteCars = async () => {
+        const res = await carServices.deleteCars({ ids: selectedRowIds });
+        if (res?.status === 'success') {
+            message.success('Xóa thành công');
+            getListData();
+            setSelectedRowIds([]);
+        }
+    };
     const columns = [
         ...carDefaultColumns,
         {
@@ -34,7 +51,16 @@ const AdminCar = () => {
                     size="small"
                     color="default"
                     variant="solid"
-                    onClick={() => setCarDetailModal({ visible: true, onSubmit: () => {}, data: record })}
+                    onClick={() =>
+                        setCarDetailModal({
+                            visible: true,
+                            onSubmit: () => {
+                                setCarDetailModal({ visible: false });
+                                getListData();
+                            },
+                            data: record,
+                        })
+                    }
                 >
                     Sửa
                 </Button>
@@ -47,43 +73,62 @@ const AdminCar = () => {
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
                 <Flex justify="space-between">
-                    <Search allowClear placeholder="Tìm kiếm" style={{ maxWidth: 300 }} />
+                    <Search
+                        allowClear
+                        placeholder="Tìm kiếm"
+                        style={{ maxWidth: 300 }}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
                     <Flex gap={10}>
                         <Button
                             icon={<PlusOutlined />}
                             type="primary"
-                            onClick={() => setCarDetailModal({ visible: true, onSubmit: () => {} })}
+                            onClick={() =>
+                                setCarDetailModal({
+                                    visible: true,
+                                    onSubmit: () => {
+                                        setCarDetailModal({ visible: false });
+                                        getListData();
+                                    },
+                                })
+                            }
                         >
                             Thêm
                         </Button>
-                        <Button icon={<DeleteFilled />} danger type="primary">
-                            Xóa
-                        </Button>
+                        <Popconfirm title="Chắc chăn xóa?" cancelText="Hủy" onConfirm={handleDeleteCars}>
+                            <Button
+                                icon={<DeleteFilled />}
+                                danger
+                                type="primary"
+                                disabled={selectedRowIds?.length === 0}
+                            >
+                                Xóa
+                            </Button>
+                        </Popconfirm>
                     </Flex>
                 </Flex>
             </div>
             <div className={cx('content-wrapper')} style={{ flex: 1 }}>
                 <Table
+                    rowKey="_id"
                     tableLayout="auto"
                     sticky
                     scroll={{
                         x: 'max-content',
                         y: 55 * 5,
                     }}
+                    pagination={false}
                     bordered
+                    loading={isLoading}
                     rowSelection={{
                         type: 'checkbox',
                         onChange: (selectedRowKeys, selectedRows) => {
-                            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+                            setSelectedRowIds(selectedRowKeys);
                         },
-                        getCheckboxProps: (record) => ({
-                            name: record.name,
-                        }),
                         fixed: 'left',
                     }}
                     columns={columns}
-                    dataSource={listData}
-                    pagination={false}
+                    dataSource={filteredList}
                 />
             </div>
         </Flex>

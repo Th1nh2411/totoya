@@ -4,22 +4,42 @@ import { useNavigate } from 'react-router';
 import Text from 'antd/es/typography/Text';
 import { Button, Col, Form, Input, Row, Select } from 'antd';
 import { Option } from 'antd/es/mentions';
-import { PlusOutlined } from '@ant-design/icons';
+import { EditFilled, PlusOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
 import { useForm } from 'antd/es/form/Form';
+import carServices from '../../services/carServices';
 
 function CarDetailForm({ data, onSubmit = () => {} }) {
     const [form] = useForm();
-    useEffect(() => {
-        form.setFieldsValue(data);
-    }, []);
+    const [rerender, setRerender] = useState();
+    const handleSubmitForm = async (values) => {
+        if (data) {
+            const res = await carServices.updateCar(data._id, values);
+            if (res?.status === 'success') {
+                onSubmit();
+            }
+        } else {
+            const res = await carServices.createCar(values);
+            if (res?.status === 'success') {
+                onSubmit();
+            }
+        }
+    };
+
     const navigate = useNavigate();
     return (
         <div>
             <Title style={{ marginBottom: 20, textAlign: 'center' }}>
                 {data ? 'Chỉnh sửa thông tin xe' : 'Thêm xe mới'}
             </Title>
-            <Form size="large" labelCol={{ style: { width: 110, textAlign: 'start' } }} onFinish={onSubmit}>
+            <Form
+                onValuesChange={setRerender}
+                initialValues={data}
+                form={form}
+                size="large"
+                labelCol={{ style: { width: 100, textAlign: 'start' } }}
+                onFinish={handleSubmitForm}
+            >
                 <Row gutter={16}>
                     <Col xs={12} md={16}>
                         <Form.Item name="name" label="Tên xe">
@@ -93,8 +113,13 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                     </Col>
                 </Row>
                 <Form.Item style={{ textAlign: 'center', marginBottom: 0 }}>
-                    <Button type="primary" htmlType="submit" icon={<PlusOutlined />}>
-                        {data ? 'Chỉnh sửa' : 'Thêm'}
+                    <Button
+                        disabled={!form.isFieldsTouched()}
+                        type="primary"
+                        htmlType="submit"
+                        icon={data ? <EditFilled /> : <PlusOutlined />}
+                    >
+                        {data ? 'Lưu' : 'Thêm'}
                     </Button>
                 </Form.Item>
             </Form>

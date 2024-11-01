@@ -8,6 +8,7 @@ import { IoLogOut } from 'react-icons/io5';
 import config from '../../config';
 import { useLocation, useNavigate } from 'react-router';
 import useUserActions from '../../hooks/useUserActions';
+import Link from 'antd/es/typography/Link';
 const { Header, Content, Footer, Sider } = Layout;
 const siderStyle = {
     overflow: 'auto',
@@ -61,7 +62,12 @@ const AdminLayout = ({ children }) => {
                         }}
                     >
                         <Flex align="center" justify="space-between" style={{ height: '100%' }}>
-                            <Title level={3}>Trang quản lý Website -</Title>
+                            <Flex align="center" gap={10}>
+                                <Title level={3}>Trang quản lý Website </Title>-{' '}
+                                <Link href="/" target="_blank">
+                                    Phước Dũng Toyota
+                                </Link>
+                            </Flex>
                             <Button onClick={logout} type="text" icon={<IoLogOut fontSize={20} />} iconPosition="end">
                                 Đăng xuất
                             </Button>

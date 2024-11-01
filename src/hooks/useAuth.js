@@ -21,7 +21,7 @@ const useAuth = () => {
                 });
             }
         };
-        // checkIsLoggedIn();
+        checkIsLoggedIn();
     }, [cookie]);
     return auth;
 };
