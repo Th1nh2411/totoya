@@ -12,6 +12,7 @@ import carServices from '../../services/carServices';
 function CarDetailForm({ data, onSubmit = () => {} }) {
     const [form] = useForm();
     const [rerender, setRerender] = useState();
+    const [removedFiles, setRemovedFiles] = useState([]);
     const [shouldRunOnSubmit, setShouldRunOnSubmit] = useState(false);
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -29,11 +30,18 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
             });
         await Promise.all(uploadPromises);
     };
+    const removeCarImages = async (carId, fileList) => {
+        const data = fileList.filter((item) => item.url).map((item) => item.url.split('/').pop());
+        await carServices.removeCarImage(carId, {ids:data}).catch((error) => {
+            // console.error('Upload failed for file', item.name, error);
+        });
+        return
+    };
     console.log(fileList);
 
     const handleSubmitForm = async (values) => {
         const action = data?._id ? carServices.updateCar : carServices.createCar;
-        values.images = fileList.filter((item) => item.url).map((item) => item.url);
+        // values.images = fileList.filter((item) => item.url).map((item) => item.url);
         const response = await action(data?._id || values, data?._id ? values : undefined);
 
         if (response?.status === 'success') {
@@ -42,6 +50,7 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                 message.success('Thêm thành công');
             } else {
                 await uploadCarImages(data?._id, fileList);
+                await removeCarImages(data?._id, removedFiles);
                 message.success('Chỉnh sửa thành công');
             }
             onSubmit(shouldRunOnSubmit);
@@ -64,6 +73,10 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
     };
 
     const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+    const handleRemove = (file) => {
+        setRemovedFiles([...removedFiles, file]);
+        return true;
+    };
     return (
         <div>
             <Title style={{ marginBottom: 20, textAlign: 'center' }}>
@@ -156,6 +169,7 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                                 fileList={fileList}
                                 onPreview={handlePreview}
                                 onChange={handleChange}
+                                onRemove={handleRemove}
                                 beforeUpload={(file, FileList) => false}
                             >
                                 <button
