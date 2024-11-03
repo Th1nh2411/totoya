@@ -8,6 +8,14 @@ const customerServices = {
             console.error(error);
         }
     },
+    getCustomer: async (data) => {
+        try {
+            const headers = { params: {} };
+            return await httpRequest.get('/customer_infor',data, headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
 };
 
 export default customerServices;

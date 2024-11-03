@@ -1,26 +1,69 @@
 import { Button, Flex, Table } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AdminPage.module.scss';
 import classNames from 'classnames/bind';
-import { ADMIN_MOCKS } from './tableConfig';
+// import { ADMIN_MOCKS } from './tableConfig';
+
 import Search from 'antd/es/input/Search';
 import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
+import customerServices from '../../services/customerServices';
+import moment from 'moment/moment';
 const cx = classNames.bind(styles);
 const columns = [
     {
-        title: 'Tên',
-        dataIndex: 'name',
-        sorter: (a, b) => a.name.localeCompare(b.name),
+        title: 'Hộ khẩu',
+        dataIndex: 'model',
+        sorter: (a, b) => a.model.localeCompare(b.model),
     },
     {
-        title: 'Tuổi',
-        dataIndex: 'age',
-        sorter: (a, b) => a.age - b.age,
+        title: 'Màu biển',
+        dataIndex: 'plateColor',
+        sorter: (a, b) => a.plateColor.localeCompare(b.plateColor),
     },
     {
-        title: 'Địa chỉ',
-        dataIndex: 'address',
-        sorter: (a, b) => a.address.localeCompare(b.address),
+        title: 'Trả trước',
+        dataIndex: 'prepaid',
+        sorter: (a, b) => a.prepaid - b.prepaid,
+    },
+    {
+        title: 'Vay',
+        dataIndex: 'loan',
+        sorter: (a, b) => a.loan - b.loan,
+    },
+    {
+        title: 'Thời gian vay',
+        dataIndex: 'loanTime',
+        sorter: (a, b) => a.loanTime.localeCompare(b.loanTime),
+    },
+    {
+        title: 'Gói vay',
+        dataIndex: 'loanType',
+        // sorter: (a, b) => a.loanType.localeCompare(b.loanType),
+    },
+    {
+        title: 'Tên khách hàng',
+        dataIndex: 'customerName',
+        sorter: (a, b) => a.customerName.localeCompare(b.customerName),
+    },
+    {
+        title: 'Số điện thoại',
+        dataIndex: 'customerPhone',
+        // sorter: (a, b) => a.address.localeCompare(b.address),
+        render: (customerPhone) => (
+            <Button
+                type="link"
+                href={`https://zalo.me/${customerPhone}`}
+                target="_blank"
+            >
+                {customerPhone}
+            </Button>
+        ),
+    },
+    {
+        title: 'Ngày tạo',
+        dataIndex: 'createdAt',
+        sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
+        render: (createdAt) => moment(createdAt).format('DD/MM/YYYY'),
     },
     {
         title: 'Action',
@@ -35,6 +78,16 @@ const columns = [
 ];
 
 const AdminUser = () => {
+    const [customerList, setSustomerList] = useState([]);
+    const getListData = async () => {
+        const res = await customerServices.getCustomer();
+        if (res?.status === 'success') {
+            setSustomerList(res.data);
+        }
+    };
+    useEffect(() => {
+        getListData();
+    }, []);
     return (
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
@@ -64,7 +117,7 @@ const AdminUser = () => {
                         fixed: 'left',
                     }}
                     columns={columns}
-                    dataSource={ADMIN_MOCKS}
+                    dataSource={customerList}
                     pagination={false}
                     scroll={{
                         x: 'max-content',
