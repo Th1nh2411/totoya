@@ -1,6 +1,6 @@
 import { Button, Flex, Image } from 'antd';
 import dayjs from 'dayjs';
-import { PlusOutlined } from '@ant-design/icons';
+import { EditFilled, PlusOutlined } from '@ant-design/icons';
 
 export const carDefaultColumns = [
     {
@@ -85,11 +85,66 @@ export const carDefaultColumns = [
     },
 ];
 
-export const ADMIN_MOCKS = [
+export const userDefaultColumns = [
     {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
+        title: 'Hộ khẩu',
+        dataIndex: 'model',
+        sorter: (a, b) => a.model.localeCompare(b.model),
+    },
+    {
+        title: 'Màu biển',
+        dataIndex: 'plateColor',
+        sorter: (a, b) => a.plateColor.localeCompare(b.plateColor),
+    },
+    {
+        title: 'Trả trước',
+        dataIndex: 'prepaid',
+        sorter: (a, b) => a.prepaid - b.prepaid,
+    },
+    {
+        title: 'Vay',
+        dataIndex: 'loan',
+        sorter: (a, b) => a.loan - b.loan,
+    },
+    {
+        title: 'Thời gian vay',
+        dataIndex: 'loanTime',
+        sorter: (a, b) => a.loanTime.localeCompare(b.loanTime),
+    },
+    {
+        title: 'Gói vay',
+        dataIndex: 'loanType',
+        // sorter: (a, b) => a.loanType.localeCompare(b.loanType),
+    },
+    {
+        title: 'Tên khách hàng',
+        dataIndex: 'customerName',
+        sorter: (a, b) => a.customerName.localeCompare(b.customerName),
+    },
+    {
+        title: 'Số điện thoại',
+        dataIndex: 'customerPhone',
+        // sorter: (a, b) => a.address.localeCompare(b.address),
+        render: (customerPhone) => (
+            <Button type="link" href={`https://zalo.me/${customerPhone}`} target="_blank">
+                {customerPhone}
+            </Button>
+        ),
+    },
+    {
+        title: 'Ngày tạo',
+        dataIndex: 'createdAt',
+        sorter: (a, b) => a.createdAt.localeCompare(b.createdAt),
+        render: (createdAt) => dayjs(createdAt).format('DD/MM/YYYY'),
+    },
+    {
+        title: 'Action',
+        key: 'action',
+        render: (_, record) => (
+            <Button icon={<EditFilled />} size="small" type="primary" style={{ backgroundColor: '#555' }}>
+                Chỉnh sửa
+            </Button>
+        ),
+        width: 150,
     },
 ];

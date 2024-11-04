@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppstoreOutlined, UserOutlined, CarFilled } from '@ant-design/icons';
+import { AppstoreOutlined, UserOutlined, CarFilled, LinkOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Divider, Flex, Image, Layout, Menu, theme } from 'antd';
 import images from '../../assets/images';
 import Text from 'antd/es/typography/Text';
@@ -63,10 +63,10 @@ const AdminLayout = ({ children }) => {
                     >
                         <Flex align="center" justify="space-between" style={{ height: '100%' }}>
                             <Flex align="center" gap={10}>
-                                <Title level={3}>Trang quản lý Website </Title>-{' '}
-                                <Link href="/" target="_blank">
+                                <Title level={3}>Trang quản lý Website </Title>-
+                                <Button type="link" href="/" target="_blank" icon={<LinkOutlined />}>
                                     Phước Dũng Toyota
-                                </Link>
+                                </Button>
                             </Flex>
                             <Button onClick={logout} type="text" icon={<IoLogOut fontSize={20} />} iconPosition="end">
                                 Đăng xuất

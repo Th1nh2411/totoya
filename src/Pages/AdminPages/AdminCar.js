@@ -117,17 +117,6 @@ const AdminCar = () => {
                         x: 'max-content',
                         y: 55 * 5,
                     }}
-                    expandable={{
-                        expandedRowRender: (record) => (
-                            <p
-                                style={{
-                                    margin: 0,
-                                }}
-                            >
-                                {record.description}
-                            </p>
-                        ),
-                    }}
                     pagination={false}
                     bordered
                     loading={isLoading}
