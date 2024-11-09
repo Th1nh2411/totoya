@@ -8,6 +8,14 @@ const carServices = {
             console.error(error);
         }
     },
+    getCarsByCondition: async (params) => {
+        try {
+            const headers = { params: params };
+            return await httpRequest.get('/old_car', headers);
+        } catch (error) {
+            console.error(error);
+        }
+    },
     createCar: async (body) => {
         try {
             const headers = { params: {} };

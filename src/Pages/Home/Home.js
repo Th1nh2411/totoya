@@ -12,17 +12,24 @@ import { priceFormat } from '../../utils/format';
 import Text from 'antd/es/typography/Text';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import bannerServices from '../../services/bannerServices';
+import carServices from '../../services/carServices';
 const cx = classNames.bind(styles);
 const bannerImg = [images.banner1, images.banner2, images.banner3, images.banner4, images.banner5, images.banner6];
 function Home() {
     const navigate = useNavigate();
     const [listBanner, setListBanner] = useState([]);
+    const [listCar, setListCar] = useState([]);
     useEffect(() => {
         const handleFetchListBanner = async () => {
             const result = await bannerServices.getBanners();
             setListBanner(result?.data || []);
         };
         handleFetchListBanner();
+        const handleFetchListCar = async () => {
+            const result = await carServices.getCarsByCondition({limit:4});
+            setListCar(result?.data || []);
+        };
+        handleFetchListCar();
     }, []);
     return (
         <div className={cx('wrapper')}>
@@ -70,12 +77,12 @@ function Home() {
                 <h1 className={cx('section-title')}>{HOME_DATA.carModels.title}</h1>
                 <div className={cx('models-body')}>
                     <Row gutter={[40, 40]}>
-                        {HOME_DATA.carModels.items.map((item, index) => (
+                        {listCar?.map((item, index) => (
                             <Col xs={12} lg={6} key={index}>
                                 <div className={cx('model-item')}>
-                                    <Image src={item.image} className={cx('model-image')} />
+                                    <Image src={item.images[0]} className={cx('model-image')} />
                                     <Text className={cx('model-name')}>{item.name}</Text>
-                                    <Text className={cx('model-price')}>Giá từ: {priceFormat(item.price)}</Text>
+                                    <Text className={cx('model-price')}>Giá từ: {item.price}</Text>
                                     <Flex gap={2}>
                                         <Button
                                             onClick={() => navigate(config.routes.course)}
