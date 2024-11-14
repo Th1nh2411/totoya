@@ -1,25 +1,23 @@
-import { Button, Flex, message, Popconfirm, Table } from 'antd';
+import { Button, Flex, message, Popconfirm, Table, Upload } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 import styles from './AdminPage.module.scss';
 import classNames from 'classnames/bind';
-import { ADMIN_MOCKS, carDefaultColumns } from './tableConfig';
+import { ADMIN_MOCKS, bannerDefaultColumns } from './tableConfig';
 import Search from 'antd/es/input/Search';
 import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
-import carServices from '../../services/carServices';
 import dayjs from 'dayjs';
 import { useSetRecoilState } from 'recoil';
-import { carDetailRegAtom } from '../../constant/atom';
+import bannerServices from '../../services/bannerServices';
 const cx = classNames.bind(styles);
 
 const AdminBanner = () => {
     const [listData, setListData] = useState([]);
-    const setCarDetailModal = useSetRecoilState(carDetailRegAtom);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedRowIds, setSelectedRowIds] = useState([]);
     const [searchText, setSearchText] = useState('');
     const getListData = async () => {
         setIsLoading(true);
-        const res = await carServices.getCars();
+        const res = await bannerServices.getBanners();
         if (res?.status === 'success') {
             setListData(res.data);
         }
@@ -28,47 +26,26 @@ const AdminBanner = () => {
     useEffect(() => {
         getListData();
     }, []);
-    const filteredList = useMemo(
-        () => listData?.filter((item) => item.name?.toUpperCase().includes(searchText.toUpperCase())),
-        [listData, searchText],
-    );
-    const handleDeleteCars = async () => {
-        const res = await carServices.deleteCars({ ids: selectedRowIds });
+
+    const handleDeleteBanners = async () => {
+        const res = await bannerServices.deleteBanners({ ids: selectedRowIds });
         if (res?.status === 'success') {
             message.success('Xóa thành công');
             getListData();
             setSelectedRowIds([]);
         }
     };
-    const columns = [
-        ...carDefaultColumns,
-        {
-            title: 'Action',
-            key: 'action',
-            render: (_, record) => (
-                <Button
-                    icon={<EditFilled />}
-                    size="small"
-                    color="default"
-                    variant="solid"
-                    onClick={() =>
-                        setCarDetailModal({
-                            visible: true,
-                            onSubmit: (closeModal) => {
-                                if (closeModal) setCarDetailModal({ visible: false });
-                                getListData();
-                            },
-                            data: record,
-                        })
-                    }
-                >
-                    Sửa
-                </Button>
-            ),
-            fixed: 'right',
-            width: 100,
-        },
-    ];
+    const columns = [...bannerDefaultColumns];
+    const handleAddBanner = async (file) => {
+        const formData = new FormData();
+        formData.append('photo', file);
+        const res = await bannerServices.createBanner(formData);
+        if (res?.status === 'success') {
+            message.success('Thêm thành công');
+            getListData();
+            setSelectedRowIds([]);
+        }
+    };
     return (
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
@@ -80,22 +57,16 @@ const AdminBanner = () => {
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <Flex gap={10}>
-                        <Button
-                            icon={<PlusOutlined />}
-                            type="primary"
-                            onClick={() =>
-                                setCarDetailModal({
-                                    visible: true,
-                                    onSubmit: (closeModal) => {
-                                        if (closeModal) setCarDetailModal({ visible: false });
-                                        getListData();
-                                    },
-                                })
-                            }
+                        <Upload
+                            fileList={[]}
+                            onChange={({ file }) => handleAddBanner(file)}
+                            beforeUpload={(file, FileList) => false}
                         >
-                            Thêm
-                        </Button>
-                        <Popconfirm title="Chắc chắn xóa?" cancelText="Hủy" onConfirm={handleDeleteCars}>
+                            <Button icon={<PlusOutlined />} type="primary" onClick={() => {}}>
+                                Thêm
+                            </Button>
+                        </Upload>
+                        <Popconfirm title="Chắc chắn xóa?" cancelText="Hủy" onConfirm={handleDeleteBanners}>
                             <Button
                                 icon={<DeleteFilled />}
                                 danger
@@ -128,7 +99,7 @@ const AdminBanner = () => {
                         fixed: 'left',
                     }}
                     columns={columns}
-                    dataSource={filteredList}
+                    dataSource={listData}
                 />
             </div>
         </Flex>

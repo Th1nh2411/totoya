@@ -17,29 +17,32 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [fileList, setFileList] = useState(data?.images?.map((item, index) => ({ uid: index, url: item })) || []);
+    const [submitLoading, setSubmitLoading] = useState(false);
     const navigate = useNavigate();
     const uploadCarImages = async (carId, fileList) => {
-        const uploadPromises = fileList
-            .filter((item) => item?.originFileObj instanceof File)
-            .map(async (item) => {
+        for (const item of fileList) {
+            if (item?.originFileObj instanceof File) {
                 const formData = new FormData();
                 formData.append('photo', item.originFileObj);
-                return carServices.uploadCarImage(carId, formData).catch((error) => {
+                try {
+                    await carServices.uploadCarImage(carId, formData);
+                } catch (error) {
                     console.error('Upload failed for file', item.name, error);
-                });
-            });
-        await Promise.all(uploadPromises);
+                }
+            }
+        }
     };
     const removeCarImages = async (carId, fileList) => {
         const data = fileList.filter((item) => item.url).map((item) => item.url.split('/').pop());
-        await carServices.removeCarImage(carId, {ids:data}).catch((error) => {
+        await carServices.removeCarImage(carId, { ids: data }).catch((error) => {
             // console.error('Upload failed for file', item.name, error);
         });
-        return
+        return;
     };
     console.log(fileList);
 
     const handleSubmitForm = async (values) => {
+        setSubmitLoading(false);
         const action = data?._id ? carServices.updateCar : carServices.createCar;
         // values.images = fileList.filter((item) => item.url).map((item) => item.url);
         const response = await action(data?._id || values, data?._id ? values : undefined);
@@ -55,6 +58,7 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
             }
             onSubmit(shouldRunOnSubmit);
         }
+        setSubmitLoading(true);
     };
 
     const getBase64 = (file) =>
@@ -195,6 +199,7 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                 <Form.Item style={{ marginBottom: 0 }}>
                     <Flex gap={15} justify="center">
                         <Button
+                            loading={submitLoading}
                             type="primary"
                             htmlType="submit"
                             icon={data ? <EditFilled /> : <PlusOutlined />}
@@ -203,7 +208,13 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                             {data ? 'Lưu' : 'Thêm'}
                         </Button>
                         {!data && (
-                            <Button color="default" variant="outlined" htmlType="submit" icon={<PlusSquareOutlined />}>
+                            <Button
+                                loading={submitLoading}
+                                color="default"
+                                variant="outlined"
+                                htmlType="submit"
+                                icon={<PlusSquareOutlined />}
+                            >
                                 Thêm & tiếp tục
                             </Button>
                         )}

@@ -84,7 +84,25 @@ export const carDefaultColumns = [
         sorter: (a, b) => a.year - b.year,
     },
 ];
-
+export const bannerDefaultColumns = [
+    {
+        title: 'ID',
+        dataIndex: '_id',
+        sorter: (a, b) => a.name.localeCompare(b.name),
+        fixed: 'left',
+    },
+    {
+        title: 'Ảnh',
+        dataIndex: 'photo',
+        render: (_, record) => <Image src={record.photo} width={20} />,
+        minWidth: 80,
+    },
+    {
+        title: 'Thứ tự',
+        dataIndex: 'order',
+        minWidth: 80,
+    },
+];
 export const userDefaultColumns = [
     {
         title: 'Hộ khẩu',
