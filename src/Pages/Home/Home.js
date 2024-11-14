@@ -93,7 +93,7 @@ function Home() {
                                             Dự toán
                                         </Button>
                                         <Button
-                                            onClick={() => navigate(`usedCar/${item.id}`)}
+                                            onClick={() => navigate(`usedCar/${item._id}`)}
                                             type="primary"
                                             style={{ borderRadius: '0 20px 20px 0', width: 120, fontWeight: 600 }}
                                             size="large"
