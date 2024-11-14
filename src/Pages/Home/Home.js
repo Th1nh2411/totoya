@@ -13,12 +13,15 @@ import Text from 'antd/es/typography/Text';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import bannerServices from '../../services/bannerServices';
 import carServices from '../../services/carServices';
+import { useSetRecoilState } from 'recoil';
+import { costEstimateRegAtom } from '../../constant/atom';
 const cx = classNames.bind(styles);
 const bannerImg = [images.banner1, images.banner2, images.banner3, images.banner4, images.banner5, images.banner6];
 function Home() {
     const navigate = useNavigate();
     const [listBanner, setListBanner] = useState([]);
     const [listCar, setListCar] = useState([]);
+    const setCostEstimateModal = useSetRecoilState(costEstimateRegAtom);
     useEffect(() => {
         const handleFetchListBanner = async () => {
             const result = await bannerServices.getBanners();
@@ -26,7 +29,7 @@ function Home() {
         };
         handleFetchListBanner();
         const handleFetchListCar = async () => {
-            const result = await carServices.getCarsByCondition({limit:4});
+            const result = await carServices.getCarsByCondition({ limit: 4 });
             setListCar(result?.data || []);
         };
         handleFetchListCar();
@@ -85,7 +88,7 @@ function Home() {
                                     <Text className={cx('model-price')}>Giá từ: {item.price}</Text>
                                     <Flex gap={2}>
                                         <Button
-                                            onClick={() => navigate(config.routes.course)}
+                                            onClick={() => setCostEstimateModal({ visible: true })}
                                             type="primary"
                                             style={{ borderRadius: '20px 0 0 20px', width: 120, fontWeight: 600 }}
                                             size="large"
