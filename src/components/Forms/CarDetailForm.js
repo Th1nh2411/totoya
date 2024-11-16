@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Text from 'antd/es/typography/Text';
-import { Button, Col, Flex, Form, Image, Input, message, Row, Select, Upload } from 'antd';
+import { Button, Col, Flex, Form, Image, Input, message, Row, Select, Switch, Upload } from 'antd';
 import { Option } from 'antd/es/mentions';
 import { EditFilled, PlusOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
@@ -95,9 +95,14 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                 onFinish={handleSubmitForm}
             >
                 <Row gutter={16}>
-                    <Col xs={12} md={16}>
+                    <Col xs={12} md={8}>
                         <Form.Item name="name" label="Tên xe">
                             <Input variant="filled" />
+                        </Form.Item>
+                    </Col>
+                    <Col xs={12} md={8}>
+                        <Form.Item name="deposit" label="Đã cọc">
+                            <Switch/>
                         </Form.Item>
                     </Col>
                     <Col xs={12} md={8}>

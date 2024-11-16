@@ -42,9 +42,9 @@ function Home() {
                 className={cx('banner-section')}
             >
                 <Slide navigation>
-                    {bannerImg.map((item, index) => (
+                    {listBanner.map((item, index) => (
                         <div key={index}>
-                            <Image src={item} alt={`banner${index}`} className={cx('banner-img')} />
+                            <Image src={item.images} alt={`banner${index}`} className={cx('banner-img')} />
                         </div>
                     ))}
                 </Slide>

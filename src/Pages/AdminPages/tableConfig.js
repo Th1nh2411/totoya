@@ -93,8 +93,8 @@ export const bannerDefaultColumns = [
     },
     {
         title: 'Ảnh',
-        dataIndex: 'photo',
-        render: (_, record) => <Image src={record.photo} width={20} />,
+        dataIndex: 'images',
+        render: (_, record) => <Image src={record.images} width={20} />,
         minWidth: 80,
     },
     {
