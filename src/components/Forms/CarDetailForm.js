@@ -107,13 +107,14 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                     </Col>
                     <Col xs={12} md={8}>
                         <Form.Item name="color" label="Màu sắc">
-                            <Select placeholder="Màu xe" variant="filled">
+                            <Input variant="filled" />
+                            {/* <Select placeholder="Màu xe" variant="filled">
                                 <Option value="Xám">Xám</Option>
                                 <Option value="Đen">Đen</Option>
                                 <Option value="Trắng">Trắng</Option>
                                 <Option value="Đỏ">Đỏ</Option>
                                 <Option value="Xanh">Xanh</Option>
-                            </Select>
+                            </Select> */}
                         </Form.Item>
                     </Col>
                     <Col xs={12} md={8}>
@@ -138,7 +139,7 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                     </Col>
                     <Col xs={12} md={8}>
                         <Form.Item name="gearbox" label="Hộp số">
-                            <Select placeholder="Hộp số" variant="filled" disabled defaultValue="Số Sàn">
+                            <Select placeholder="Hộp số" variant="filled" defaultValue="Số Sàn">
                                 <Option value="Số Sàn">Số Sàn</Option>
                                 <Option value="Số Tự Động">Số Tự Động</Option>
                                 <Option value="CVT">CVT</Option>
