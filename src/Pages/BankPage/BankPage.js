@@ -38,14 +38,33 @@ function BankPage() {
                 </div>
                 <Flex gap={15} justify="center">
                     <Button size="large" type="primary">
-                        <a href="https://docs.google.com/spreadsheets/d/1k2IXmHe6NSSSyU1JIhi78BJjlUQ0SNFDfMUNIxyjEes/export?format=xlsx"
-                            class="download-button" download="file.xlsx"
-                            style={{ color: 'white', textDecoration: 'none' }}>
+                        <a
+                            href="https://docs.google.com/spreadsheets/d/1k2IXmHe6NSSSyU1JIhi78BJjlUQ0SNFDfMUNIxyjEes/export?format=xlsx"
+                            class="download-button"
+                            download="file.xlsx"
+                            style={{ color: 'white', textDecoration: 'none' }}
+                        >
                             Vay truyền thống
                         </a>
                     </Button>
-                    <Button size="large">Vay 50/50</Button>
-                    <Button size="large">Vay 50/50 plus</Button>
+                    <Button size="large">
+                        <a
+                            href="/images/bank.jpg"
+                            download="image.jpg"
+                            style={{ color: 'black', textDecoration: 'none' }}
+                        >
+                            Vay 50/50
+                        </a>
+                    </Button>
+                    <Button size="large">
+                        <a
+                            href="/images/bank.jpg"
+                            download="image.jpg"
+                            style={{ color: 'black', textDecoration: 'none' }}
+                        >
+                            Vay 50/50 plus
+                        </a>
+                    </Button>
                 </Flex>
             </Col>
         </div>

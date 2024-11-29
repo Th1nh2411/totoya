@@ -26,17 +26,17 @@ function DetailCar() {
             const handleFetchDetailCar = async () => {
                 const result = await carServices.getDetailCar(id);
                 setCarDetail(result?.data || {});
-                setMainImage(result?.data?.images[0])
+                setMainImage(result?.data?.images[0]);
             };
             handleFetchDetailCar();
             const handleFetchListCar = async () => {
                 const result = await carServices.getCars();
-                console.log(123123123123,result.data)
-                setViewData(result?.data)
+                console.log(123123123123, result.data);
+                setViewData(result?.data);
             };
             handleFetchListCar();
         }
-    }, []);
+    }, [id]);
     const changeImage = (newImage) => {
         if (newImage === mainImage) return;
         setIsFading(true);
