@@ -171,6 +171,11 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                             <Input type="number" variant="filled" />
                         </Form.Item>
                     </Col>
+                    <Col xs={24} md={24}>
+                        <Form.Item name="detail" label="Giới thiệu">
+                            <Input.TextArea rows={3} variant="filled" />
+                        </Form.Item>
+                    </Col>
                     <Col xs={24}>
                         <Form.Item label="Ảnh hiển thị">
                             <Upload

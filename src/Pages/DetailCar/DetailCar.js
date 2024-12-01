@@ -35,6 +35,7 @@ function DetailCar() {
                 setViewData(result?.data);
             };
             handleFetchListCar();
+            window.scrollTo(0, 0);
         }
     }, [id]);
     const changeImage = (newImage) => {
@@ -147,15 +148,15 @@ function DetailCar() {
                                 <td>{carDetail?.engine}</td>
                             </tr>
                             <tr>
-                                <td>Phụ kiện được trang bị</td>
-                                <td>
-                                    <span
-                                        style={{ cursor: 'pointer' }}
-                                        data-toggle="tooltip"
-                                        data-placement="top"
-                                        title=""
-                                        data-original-title=""
-                                    ></span>
+                                <td>Giới thiệu sơ lượt về xe</td>
+                                <td
+                                    style={{
+                                        maxWidth: '300px',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                    }}
+                                >
+                                    {carDetail?.detail}
                                 </td>
                             </tr>
                         </tbody>
@@ -169,11 +170,14 @@ function DetailCar() {
                 <Divider style={{ margin: '15px 0' }} />
                 {viewData && (
                     <Row gutter={[20, 20]}>
-                        {viewData.slice(0, 4).map((item, index) => (
-                            <Col xs={24} sm={12} lg={6} key={index}>
-                                <ProductItem data={item} />
-                            </Col>
-                        ))}
+                        {viewData
+                            .filter((item) => item._id != id)
+                            .slice(0, 4)
+                            .map((item, index) => (
+                                <Col xs={24} sm={12} lg={6} key={index}>
+                                    <ProductItem data={item} />
+                                </Col>
+                            ))}
                     </Row>
                 )}
             </div>
