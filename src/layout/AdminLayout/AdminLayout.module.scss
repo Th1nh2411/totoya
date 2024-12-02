@@ -39,8 +39,8 @@
         opacity: 0.9;
     }
 }
-@media (max-width: 660px) {
-    .container {
-        padding-top: 0px;
+@media (max-width: 680px) {
+    .hide-md {
+        display: none;
     }
 }

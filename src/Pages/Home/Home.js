@@ -55,24 +55,19 @@ function Home() {
                 className={cx('aboutUs-section')}
             >
                 <div className={cx('aboutUs-content')}>
-                    <Flex gap={60}>
-                        <div>
-                            <Image src={images.staff1} alt={`staff1`} className={cx('aboutUs-img')} />
+                    <Image src={images.staff1} alt={`staff1`} className={cx('aboutUs-img')} />
+                    <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 18, lineHeight: 2 }}>
+                            <FaQuoteLeft />
+                            <i>
+                                &nbsp;Uy tín tạo niềm tin, với phương châm là <strong>không chạy theo về giá</strong>,
+                                không bán hàng bằng mọi giá, không bất chấp tất cả để bán hàng&nbsp;
+                            </i>
+                            <FaQuoteRight />
                         </div>
-                        <div style={{ flex: 1 }}>
-                            <div style={{ fontSize: 18, lineHeight: 2 }}>
-                                <FaQuoteLeft />
-                                <i>
-                                    &nbsp;Uy tín tạo niềm tin, với phương châm là{' '}
-                                    <strong>không chạy theo về giá</strong>, không bán hàng bằng mọi giá, không bất chấp
-                                    tất cả để bán hàng&nbsp;
-                                </i>
-                                <FaQuoteRight />
-                            </div>
-                            <h3 style={{ fontWeight: 700, marginTop: 32 }}>Phước Dũng</h3>
-                            <p>Nhân Viên Kinh Doanh</p>
-                        </div>
-                    </Flex>
+                        <h3 style={{ fontWeight: 700, marginTop: 32 }}>Phước Dũng</h3>
+                        <p>Nhân Viên Kinh Doanh</p>
+                    </div>
                 </div>
             </section>
             {/* carModels SECTION */}
@@ -81,24 +76,24 @@ function Home() {
                 <div className={cx('models-body')}>
                     <Row gutter={[40, 40]}>
                         {listCar?.map((item, index) => (
-                            <Col xs={12} lg={6} key={index}>
+                            <Col xs={24} sm={12} xl={6} key={index}>
                                 <div className={cx('model-item')}>
                                     <Image src={item.images[0]} className={cx('model-image')} />
                                     <Text className={cx('model-name')}>{item.name}</Text>
-                                    <Text className={cx('model-price')}>Giá từ: {item.price}</Text>
+                                    <Text>Giá từ: {item.price} VND</Text>
                                     <Flex gap={2}>
                                         <Button
+                                            className={cx('models-btn')}
                                             onClick={() => setCostEstimateModal({ visible: true })}
                                             type="primary"
-                                            style={{ borderRadius: '20px 0 0 20px', width: 120, fontWeight: 600 }}
                                             size="large"
                                         >
                                             Dự toán
                                         </Button>
                                         <Button
+                                            className={cx('models-btn', 'right')}
                                             onClick={() => navigate(`usedCar/${item._id}`)}
                                             type="primary"
-                                            style={{ borderRadius: '0 20px 20px 0', width: 120, fontWeight: 600 }}
                                             size="large"
                                         >
                                             Thông tin xe

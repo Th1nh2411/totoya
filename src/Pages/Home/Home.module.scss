@@ -36,7 +36,7 @@
 // ABOUT US SECTION
 .aboutUs-section {
     position: relative;
-    padding: 60px 0;
+    padding: 60px 20px;
     align-items: center;
 }
 .aboutUs-content {
@@ -45,6 +45,8 @@
     width: 1170px;
     max-width: 100%;
     margin: auto;
+    display: flex;
+    gap: 20px 50px;
 }
 
 .aboutUs-img {
@@ -71,7 +73,7 @@
     background-color: var(--primary-color);
 }
 .models-body {
-    padding: 0 50px;
+    padding: 0 20px;
 }
 .model-item {
     display: flex;
@@ -81,12 +83,9 @@
     gap: 15px;
 }
 .model-name {
-    display: flex;
-    align-items: center;
     font-weight: 700;
     color: var(--primary-color);
     line-height: 1;
-    margin: 5px 0 0;
     font-size: 1.8rem;
 }
 .model-image {
@@ -94,123 +93,13 @@
     width: 100%;
     object-fit: cover;
 }
-.model-price {
-    position: relative;
+.models-btn {
+    border-radius: 20px 0 0 20px;
+    width: 115px;
+    font-weight: 600;
 }
-.model-price:after {
-    content: 'VND';
-    top: -1px;
-    position: absolute;
-    right: -39px;
-    font-size: 15px;
-}
-// LEVEL SELECTION SECTION
-.levelSelection-section {
-}
-.levelSelection-img {
-    position: relative;
-    height: 400px;
-    object-fit: cover;
-    clip-path: polygon(0% 0%, 100% 20%, 100% 100%, 0% 100%);
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 40%);
-    margin-top: 20px;
-    &:hover .img-overlay {
-        background-color: transparent;
-    }
-    img {
-        border-radius: 6px;
-        width: 100%;
-    }
-}
-.levelSelection-img.reflect {
-    clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
-}
-.img-overlay {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0000008e;
-    transition: all 0.2s ease-in-out;
-    z-index: 10;
-}
-.levelSelection-content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%);
-    z-index: 11;
-    color: #fff;
-    text-align: center;
-}
-.levelSelection-title {
-    font-weight: 800;
-    font-size: 3.2rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-.levelSelection-subtitle {
-}
-// COURSE,MENTOR,ROAD SECTION
-.course-section,
-.mentor-section {
-    padding: 50px 0;
-    width: var(--default-layout-width);
-    max-width: 100%;
-    margin: auto;
-    position: relative;
-}
-.road-section {
-    padding: 50px 0;
-    width: 100%;
-    margin: auto;
-    position: relative;
-}
-.road-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    pointer-events: none;
-}
-.road-content {
-    position: relative;
-    margin: auto;
-    max-width: 100%;
-}
-.road-title {
-    color: var(--title-color);
-    font-weight: 700;
-    text-align: center;
-    font-size: 2.6rem;
-    margin-bottom: 20px;
-}
-.road-btn {
-    width: 200px;
-}
-// PARTNER SECTION
-.partner-section {
-    background-color: #f5f7fc;
-}
-.partner-content {
-    padding: 80px 0;
-    width: var(--default-layout-width);
-    max-width: 100%;
-    margin: auto;
-}
-.partner-title {
-    margin-bottom: 45px;
-}
-.partner-img {
-    height: 100px;
-    width: 100%;
-    object-fit: contain;
+.models-btn.right {
+    border-radius: 0 20px 20px 0;
 }
 @media (max-width: 992px) {
     .banner-info {
@@ -265,37 +154,14 @@
     .banner-info {
         font-size: 1.4rem;
     }
-    .aboutUs-body {
-        padding: 0 10px;
+    .aboutUs-section {
+        padding: 20px;
+    }
+    .aboutUs-content {
         flex-direction: column;
+        align-items: center;
     }
-    .primary-custom-btn {
-        white-space: normal;
-        height: auto;
-    }
-    .primary-custom-btn + .primary-custom-btn {
-        margin-left: 10px;
-    }
-    .introduce-body {
-        padding: 0 10px;
-    }
-    .levelSelection-section {
-        padding: 0 10px;
-    }
-    .levelSelection-title {
-        font-size: 2.4rem;
-    }
-    .course-section,
-    .mentor-section {
-        padding: 50px 10px;
-    }
-    .road-content {
-        padding: 0 10px;
-    }
-    .partner-content {
-        padding: 60px 10px;
-    }
-    .partner-img {
-        height: 100px;
+    .models-section {
+        padding: 20px 0;
     }
 }

@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from 'react';
 import commonServices from '../../services/commonServices';
 import Title from 'antd/es/typography/Title';
 import UtilityItem from './UtilityItem';
+import PageBanner from '../../components/PageBanner/PageBanner';
 const cx = classNames.bind(styles);
 
 function UtilityPage() {
@@ -17,10 +18,8 @@ function UtilityPage() {
     }, []);
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('banner-section')}>
-                <div className={cx('banner-content')}>TIỆN ÍCH</div>
-            </div>
-            <div>
+            <PageBanner>TIỆN ÍCH</PageBanner>
+            <div className={cx('content')}>
                 <Title level={5} style={{ textAlign: 'center', marginBlock: 20 }}>
                     "Tự hào là doanh nghiệp đứng vị trí dẫn đầu trên thị trường về dịch vụ sau bán hàng trong nhiều năm
                     liên tiếp"

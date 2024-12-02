@@ -4,20 +4,19 @@ import Image from '../../components/Image';
 import images from '../../assets/images';
 import { Col, Flex, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
+import PageBanner from '../../components/PageBanner/PageBanner';
 const cx = classNames.bind(styles);
 
 function AboutUsPage() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('banner-section')}>
-                <div className={cx('banner-content')}>
-                    GIỚI THIỆU
-                    <br /> CÔNG TY
-                </div>
-            </div>
-            <Col xs={24} sm={20} lg={18} style={{ margin: '30px auto' }}>
+            <PageBanner>
+                GIỚI THIỆU
+                <br /> CÔNG TY
+            </PageBanner>
+            <div className={cx('content')} style={{ margin: '30px auto' }}>
                 <Flex vertical gap={10}>
-                    <h1 style={{ fontSize: 30, fontWeight: 600 }}>Phước Dũng Toyota Rạch Chiếc</h1>
+                    <h1 style={{ fontSize: '3rem', fontWeight: 600 }}>Phước Dũng Toyota Rạch Chiếc</h1>
                     <div style={{ fontSize: 18, lineHeight: 1.5 }}>
                         <p>
                             <strong>Uy tín tạo niềm tin,</strong> với phương châm là “
@@ -88,7 +87,7 @@ function AboutUsPage() {
                         </p>
                     </div>
                 </Flex>
-            </Col>
+            </div>
             {/* map SECTION */}
             <section className={cx('map-section')}>
                 <div style={{ paddingInline: 10 }}>

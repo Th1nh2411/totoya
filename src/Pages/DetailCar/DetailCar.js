@@ -58,14 +58,14 @@ function DetailCar() {
                         <div className={cx('product-image-wrapper', { fade: isFading })}>
                             <Image width={'100%'} height={320} src={mainImage} className={cx('product-image')} />
                         </div>
-                        <Flex gap={10}>
+                        <Flex gap={10} wrap>
                             {carDetail?.images?.map((src, index) => (
                                 <Image
                                     preview={false}
                                     onClick={() => changeImage(src)}
                                     key={index}
                                     src={src}
-                                    style={{ height: 104, width: 104, borderRadius: 5, objectFit: 'cover' }}
+                                    style={{ height: 100, width: 100, borderRadius: 5, objectFit: 'cover' }}
                                     className="hovered"
                                 />
                             ))}

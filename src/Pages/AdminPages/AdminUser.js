@@ -27,7 +27,7 @@ const AdminUser = () => {
     return (
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
-                <Flex justify="space-between">
+                <Flex justify="space-between" gap={10} wrap>
                     <Search allowClear placeholder="Tìm kiếm" style={{ maxWidth: 300 }} />
                     <Flex gap={10}>
                         <Button icon={<PlusOutlined />} type="primary">

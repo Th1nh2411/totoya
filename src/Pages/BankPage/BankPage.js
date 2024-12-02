@@ -6,6 +6,7 @@ import { Button, Col, Flex, Row } from 'antd';
 import { useContext, useEffect, useState } from 'react';
 import commonServices from '../../services/commonServices';
 import { goExport } from '../../utils';
+import PageBanner from '../../components/PageBanner/PageBanner';
 const cx = classNames.bind(styles);
 
 function BankPage() {
@@ -15,10 +16,8 @@ function BankPage() {
     };
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('banner-section')}>
-                <div className={cx('banner-content')}>NGÂN HÀNG</div>
-            </div>
-            <Col xs={24} sm={20} lg={18} style={{ margin: '30px auto' }}>
+            <PageBanner>NGÂN HÀNG</PageBanner>
+            <div className={cx('content')}>
                 <div style={{ fontSize: 18, lineHeight: 1.5, marginBottom: 40 }}>
                     <p>
                         Hiện tại đang được ưu đãi từ vay từ ngân hàng của Toyota là Ngân Hàng Tài Chính Toyota TFS với
@@ -36,7 +35,7 @@ function BankPage() {
                         <li>Gói vay 50/50 plus: trả gốc sau 2 năm vay, lãi trả theo quý 3 tháng 1 lần.</li>
                     </ul>
                 </div>
-                <Flex gap={15} justify="center">
+                <Flex gap={15} justify="center" wrap>
                     <Button size="large" type="primary">
                         <a
                             href="https://docs.google.com/spreadsheets/d/1k2IXmHe6NSSSyU1JIhi78BJjlUQ0SNFDfMUNIxyjEes/export?format=xlsx"
@@ -66,7 +65,7 @@ function BankPage() {
                         </a>
                     </Button>
                 </Flex>
-            </Col>
+            </div>
         </div>
     );
 }

@@ -54,9 +54,9 @@ function UsedCarPage() {
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>XE ĐÃ QUA SỬ DỤNG</h1>
-            <Flex justify="end" gap={5}>
+            <Flex justify="end" gap={5} wrap>
                 <Select
-                    style={{ width: 180 }}
+                    className={cx('select-input')}
                     value={filter.sort}
                     onChange={(value) => setFilter((prev) => ({ ...prev, sort: value }))}
                     size="large"
@@ -68,7 +68,7 @@ function UsedCarPage() {
                     ]}
                 ></Select>
                 <Select
-                    style={{ width: 140 }}
+                    className={cx('select-input')}
                     value={filter.deposit}
                     onChange={(value) => setFilter((prev) => ({ ...prev, deposit: value }))}
                     size="large"
@@ -80,7 +80,7 @@ function UsedCarPage() {
                     ]}
                 ></Select>
                 <Select
-                    style={{ width: 180 }}
+                    className={cx('select-input')}
                     value={filter.price}
                     onChange={(value) => setFilter((prev) => ({ ...prev, price: value }))}
                     size="large"

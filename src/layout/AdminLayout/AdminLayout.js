@@ -9,6 +9,9 @@ import config from '../../config';
 import { useLocation, useNavigate } from 'react-router';
 import useUserActions from '../../hooks/useUserActions';
 import Link from 'antd/es/typography/Link';
+import styles from './AdminLayout.module.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 const { Header, Content, Footer, Sider } = Layout;
 const siderStyle = {
     overflow: 'auto',
@@ -62,7 +65,7 @@ const AdminLayout = ({ children }) => {
                         }}
                     >
                         <Flex align="center" justify="space-between" style={{ height: '100%' }}>
-                            <Flex align="center" gap={10}>
+                            <Flex align="center" gap={10} className={cx('hide-md')}>
                                 <Title level={3}>Trang quản lý Website </Title>-
                                 <Button type="link" href="/" target="_blank" icon={<LinkOutlined />}>
                                     Phước Dũng Toyota

@@ -72,7 +72,9 @@ function Slide({
                 style={{ '--swiper-pagination-bullet-size': `${thumbSize}px` }}
             >
                 {childrenArray.map((item, index) => (
-                    <SwiperSlide key={index}>{item}</SwiperSlide>
+                    <SwiperSlide className={cx('slide')} key={index}>
+                        {item}
+                    </SwiperSlide>
                 ))}
             </Swiper>
             {navigation && (

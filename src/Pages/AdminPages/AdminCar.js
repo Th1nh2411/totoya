@@ -72,7 +72,7 @@ const AdminCar = () => {
     return (
         <Flex vertical gap={10} style={{ height: '100%' }}>
             <div className={cx('content-wrapper')}>
-                <Flex justify="space-between">
+                <Flex justify="space-between" gap={10} wrap>
                     <Search
                         allowClear
                         placeholder="Tìm kiếm"

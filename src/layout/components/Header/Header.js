@@ -39,11 +39,8 @@ function Header() {
     return (
         <>
             <header className={cx('wrapper', { active: showMenuMb })}>
-                <div
-                    className={cx('inner')}
-                    style={{ backgroundColor: '#f9f9f9', borderBottom: '1px solid #e3e3e3', flex: 1 }}
-                >
-                    <div className={cx('top-header-wrapper')}>
+                <div className={cx('inner', 'top-header-wrapper')}>
+                    <div className={cx('top-header-content')}>
                         <div className={cx('logo-wrapper')}>
                             <Link to={config.routes.home}>
                                 <img src={images.mainLogo} className={cx('logo')} alt="logo" />
@@ -59,48 +56,39 @@ function Header() {
                                 <Image src={images.subLogo} alt="sub" className={cx('sub-img')} />
                             </div>
                         </div>
-                        <Input
-                            className={cx('search')}
-                            suffix={<MdSearch />}
-                            value={searchValue}
-                            onChange={(e) => setSearchVale(e.target.value)}
-                            placeholder="Tìm kiếm khoá học"
-                        />
                     </div>
                 </div>
-                <div className={cx('inner')} style={{ paddingBlock: 8 }}>
-                    <div className={cx('side-group')}>
-                        <nav className={cx('header-nav')}>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.aboutUs}
-                            >
-                                Giới thiệu
-                            </NavLink>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.usedCar}
-                            >
-                                Xe đã qua sử dụng
-                            </NavLink>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.banking}
-                            >
-                                Ngân hàng
-                            </NavLink>
-                            <NavLink
-                                onClick={handleCloseMenuMb}
-                                className={(nav) => cx('header-nav_item', { active: nav.isActive })}
-                                to={config.routes.utility}
-                            >
-                                Tiện ích
-                            </NavLink>
-                        </nav>
-                    </div>
+                <div style={{ paddingBlock: 8 }}>
+                    <nav className={cx('header-nav')}>
+                        <NavLink
+                            onClick={handleCloseMenuMb}
+                            className={(nav) => cx('header-nav_item', { active: nav.isActive })}
+                            to={config.routes.aboutUs}
+                        >
+                            Giới thiệu
+                        </NavLink>
+                        <NavLink
+                            onClick={handleCloseMenuMb}
+                            className={(nav) => cx('header-nav_item', { active: nav.isActive })}
+                            to={config.routes.usedCar}
+                        >
+                            Xe đã qua sử dụng
+                        </NavLink>
+                        <NavLink
+                            onClick={handleCloseMenuMb}
+                            className={(nav) => cx('header-nav_item', { active: nav.isActive })}
+                            to={config.routes.banking}
+                        >
+                            Ngân hàng
+                        </NavLink>
+                        <NavLink
+                            onClick={handleCloseMenuMb}
+                            className={(nav) => cx('header-nav_item', { active: nav.isActive })}
+                            to={config.routes.utility}
+                        >
+                            Tiện ích
+                        </NavLink>
+                    </nav>
                 </div>
             </header>
             <div ref={overlayRef} className={cx('menu-modal-overlay', { active: showMenuMb })}></div>

@@ -6,48 +6,13 @@
         margin-bottom: 5px;
     }
 }
-.banner-section {
-    position: relative;
-    background: url('../../assets/images/aboutus-banner.jpg') center / cover no-repeat;
-    width: 100%;
-    padding: 50px 10px;
-    height: 280px;
-    display: flex;
-    align-items: center;
+.content {
+    width: var(--default-layout-width);
+    max-width: 100%;
+    padding-inline: var(--default-layout-horizontal-spacer);
+    margin: 30px auto 60px;
 }
-.banner-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #00000035;
-}
-.banner-content {
-    position: relative;
-    width: 920px;
-    margin: auto;
-    line-height: 60px;
-    padding-left: 40px;
-    letter-spacing: 2px;
-    position: relative;
-    font-weight: 700;
-    font-size: 5rem;
-    color: #fff;
-    text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-}
-.banner-content::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    background-color: #eb1b2e;
-    width: 10px;
-    height: 75%;
-}
+
 .estimation-wrapper {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
