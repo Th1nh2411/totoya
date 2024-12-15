@@ -9,7 +9,7 @@ const useModals = () => {
     const [costEstimateModal, setCostEstimateModal] = useRecoilState(costEstimateRegAtom);
     const [carDetailModal, setCarDetailModal] = useRecoilState(carDetailRegAtom);
     const handleSubmit = async (formData) => {
-        customerServices.postCustomer(formData);
+        customerServices.postCustomer({...formData, car_id:costEstimateModal.data});
         setCostEstimateModal({ ...costEstimateModal, visible: false });
     };
 

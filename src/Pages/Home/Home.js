@@ -84,7 +84,7 @@ function Home() {
                                     <Flex gap={2}>
                                         <Button
                                             className={cx('models-btn')}
-                                            onClick={() => setCostEstimateModal({ visible: true })}
+                                            onClick={() => setCostEstimateModal({ visible: true, data:item._id })}
                                             type="primary"
                                             size="large"
                                         >

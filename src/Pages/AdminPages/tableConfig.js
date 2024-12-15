@@ -105,6 +105,25 @@ export const bannerDefaultColumns = [
 ];
 export const userDefaultColumns = [
     {
+        title: 'Loại xe',
+        dataIndex: 'car_id',
+        render: (car_id, record) => {
+            const car_name = car_id?.name;
+            if (!car_id) {
+                return <span>Không có thông tin</span>;
+            }
+            return (
+                <Button 
+                    type="link" 
+                    href={`https://phuocdungtoyota.com/usedCar/${car_id._id}`} 
+                    target="_blank"
+                >
+                    {car_name}
+                </Button>
+            );
+        },
+    },
+    {
         title: 'Hộ khẩu',
         dataIndex: 'model',
         sorter: (a, b) => a.model.localeCompare(b.model),

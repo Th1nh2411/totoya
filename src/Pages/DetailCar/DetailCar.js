@@ -83,7 +83,7 @@ function DetailCar() {
                         <Flex gap={2}>
                             <Button
                                 size="large"
-                                onClick={() => setCostEstimateModal({ visible: true })}
+                                onClick={() => setCostEstimateModal({ visible: true, data:carDetail._id })}
                                 type="primary"
                                 style={{ borderRadius: '20px 0 0 20px', width: '100%', marginTop: 40 }}
                             >

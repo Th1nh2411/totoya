@@ -48,10 +48,18 @@ function CostEstimateForm({ data = {}, onSubmit = () => {} }) {
                     />
                 </Form.Item>
                 <Form.Item name="loanTime" label="Thời gian vay">
-                    <Input variant="filled" disabled={paymentType === 'prepaid'} />
+                    <Select variant="filled" placeholder="Chọn thời gian vay" allowClear>
+                        <Option value="1 năm">1 năm</Option>
+                        <Option value="2 năm">2 năm</Option>
+                        <Option value="3 năm">3 năm</Option>
+                        <Option value="4 năm">4 năm</Option>
+                        <Option value="5 năm">5 năm</Option>
+                        <Option value="6 năm">6 năm</Option>
+                        <Option value="7 năm">7 năm</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item name="loanType" label="Gói vay">
-                    <Select variant="filled" placeholder="Chọn gói vay" allowClear disabled={paymentType === 'prepaid'}>
+                    <Select variant="filled" placeholder="Chọn gói vay" allowClear>
                         <Option value="Truyền Thống">Truyền Thống</Option>
                         <Option value="50/50">50/50</Option>
                         <Option value="50/50 Plus">50/50 Plus</Option>
