@@ -59,16 +59,18 @@ function DetailCar() {
                             <Image width={'100%'} height={320} src={mainImage} className={cx('product-image')} />
                         </div>
                         <Flex gap={10} wrap>
+                        <Image.PreviewGroup>
                             {carDetail?.images?.map((src, index) => (
-                                <Image
-                                    preview={false}
-                                    onClick={() => changeImage(src)}
-                                    key={index}
-                                    src={src}
-                                    style={{ height: 100, width: 100, borderRadius: 5, objectFit: 'cover' }}
-                                    className="hovered"
-                                />
+                            <Image
+                                preview
+                                onClick={() => changeImage(src)}
+                                key={index}
+                                src={src}
+                                style={{ height: 100, width: 100, borderRadius: 5, objectFit: 'cover' }}
+                                className="hovered"
+                            />
                             ))}
+                        </Image.PreviewGroup>
                         </Flex>
                     </Flex>
                 </Col>
