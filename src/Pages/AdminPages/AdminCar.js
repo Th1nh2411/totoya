@@ -115,7 +115,7 @@ const AdminCar = () => {
                     sticky
                     scroll={{
                         x: 'max-content',
-                        y: 55 * 5,
+                        y: 150 * 5,
                     }}
                     pagination={false}
                     bordered

@@ -106,6 +106,26 @@ function CarDetailForm({ data, onSubmit = () => {} }) {
                         </Form.Item>
                     </Col>
                     <Col xs={12} md={8}>
+                        <Form.Item name="type" label="Loại xe">
+                            <Select placeholder="Loại xe" variant="filled">
+                                <Option value="Wigo">Wigo</Option>
+                                <Option value="Vios">Vios</Option>
+                                <Option value="Fortuner">Fortuner</Option>
+                                <Option value="Innova">Innova</Option>
+                                <Option value="Camry">Camry</Option>
+                                <Option value="Altis">Altis</Option>
+                                <Option value="Land">Land</Option>
+                                <Option value="Veloz">Veloz</Option>
+                                <Option value="Avanza">Avanza</Option>
+                                <Option value="Raize">Raize</Option>
+                                <Option value="Rush">Rush</Option>
+                                <Option value="Cross">Cross</Option>
+                                <Option value="Yaris">Yaris</Option>
+                                <Option value="">Dòng Khác</Option>
+                            </Select>
+                        </Form.Item>
+                    </Col>
+                    <Col xs={12} md={8}>
                         <Form.Item name="color" label="Màu sắc">
                             <Input variant="filled" />
                             {/* <Select placeholder="Màu xe" variant="filled">

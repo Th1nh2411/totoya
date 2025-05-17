@@ -32,6 +32,9 @@ function UsedCarPage() {
                 return true;
             })
             .filter((car) => {
+                return filter.type === car.type;
+            })
+            .filter((car) => {
                 // Lọc theo mức giá
                 if (filter.price === 'lt_300') return car.price < 300;
                 if (filter.price === 'bt_300-500') return car.price >= 300 && car.price <= 500;
@@ -41,12 +44,12 @@ function UsedCarPage() {
                 if (filter.price === 'gt_1500') return car.price > 1500;
                 return true;
             })
-            .sort((a, b) => {
-                // Sắp xếp theo giá
-                if (filter.sort === 'price_desc') return b.price - a.price;
-                if (filter.sort === 'price_asc') return a.price - b.price;
-                return 0;
-            });
+            // .sort((a, b) => {
+            //     // Sắp xếp theo giá
+            //     if (filter.sort === 'price_desc') return b.price - a.price;
+            //     if (filter.sort === 'price_asc') return a.price - b.price;
+            //     return 0;
+            // });
         setListCar(filteredList);
         console.log('filter', filter);
         console.log('listCar', filteredList);
@@ -58,13 +61,25 @@ function UsedCarPage() {
                 <Select
                     className={cx('select-input')}
                     value={filter.sort}
-                    onChange={(value) => setFilter((prev) => ({ ...prev, sort: value }))}
+                    onChange={(value) => setFilter((prev) => ({ ...prev, type: value }))}
                     size="large"
-                    placeholder="Sắp xếp theo giá"
+                    placeholder="Loại xe"
+                    allowClear
                     options={[
-                        { label: 'Giá từ cao đến thấp', value: 'price_desc' },
-                        { label: 'Giá từ thấp đến cao', value: 'price_asc' },
-                        { label: 'Bỏ chọn', value: null },
+                        { label: "Wigo", value: "Wigo" },
+                        { label: "Vios", value: "Vios" },
+                        { label: "Fortuner", value: "Fortuner" },
+                        { label: "Innova", value: "Innova" },
+                        { label: "Camry", value: "Camry" },
+                        { label: "Altis", value: "Altis" },
+                        { label: "Land", value: "Land" },
+                        { label: "Veloz", value: "Veloz" },
+                        { label: "Avanza", value: "Avanza" },
+                        { label: "Raize", value: "Raize" },
+                        { label: "Rush", value: "Rush" },
+                        { label: "Cross", value: "Cross" },
+                        { label: "Yaris", value: "Yaris" },
+                        { label: "Dòng Khác", value: "" }
                     ]}
                 ></Select>
                 <Select
@@ -73,10 +88,10 @@ function UsedCarPage() {
                     onChange={(value) => setFilter((prev) => ({ ...prev, deposit: value }))}
                     size="large"
                     placeholder="Tình trạng cọc"
+                    allowClear
                     options={[
                         { label: 'Đã đặt cọc', value: 'deposit' },
                         { label: 'Chưa đặt cọc', value: 'not_deposit' },
-                        { label: 'Bỏ chọn', value: null },
                     ]}
                 ></Select>
                 <Select
@@ -85,6 +100,7 @@ function UsedCarPage() {
                     onChange={(value) => setFilter((prev) => ({ ...prev, price: value }))}
                     size="large"
                     placeholder="Chọn mức giá"
+                    allowClear
                     options={[
                         { label: 'Nhỏ hơn 300', value: 'lt_300' },
                         { label: 'Giá từ: 300-500', value: 'bt_300-500' },
@@ -92,7 +108,6 @@ function UsedCarPage() {
                         { label: 'Giá từ: 700-1000', value: 'bt_700-1000' },
                         { label: 'Giá từ: 1000-1500', value: 'bt_1000-1500' },
                         { label: 'Lớn hơn 1500', value: 'gt_1500' },
-                        { label: 'Bỏ chọn', value: null },
                     ]}
                 ></Select>
             </Flex>
